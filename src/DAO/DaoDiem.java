@@ -10,5 +10,7 @@ package DAO;
  * @author thanh
  */
 public class DaoDiem {
-    
+    public static void main(String[] args) {
+        System.out.println("abc");
+    }
 }
