@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 public class DangNhap extends javax.swing.JFrame {
     DaoTaikhoan csdl = new DaoTaikhoan();
     /**
-     * Creates new form DangNhap
+     * Creates new form DangNhap  ok
      */
     public DangNhap() {
         initComponents();
