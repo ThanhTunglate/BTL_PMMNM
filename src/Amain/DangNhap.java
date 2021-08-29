@@ -23,6 +23,8 @@ public class DangNhap extends javax.swing.JFrame {
     public DangNhap() {
         initComponents();
         setLocationRelativeTo(null);
+        txtTaikhoan.setText("Admin");
+        txtMatKhau.setText("1234");
     }
     
     public void Dangnhap(){
