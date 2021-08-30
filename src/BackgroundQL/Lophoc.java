@@ -5,19 +5,97 @@
  */
 package BackgroundQL;
 
+import Customtable.customLopHoc;
+import Customtable.model;
+import DAO.DaoLophoc;
+import Emtity.eLopHoc;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author thanh
- */
+
 public class Lophoc extends javax.swing.JPanel {
-    /**
-     * Creates new form Monhoc
-     */
+   
+    public DaoLophoc csdl = new DaoLophoc();
+   
+    ArrayList<eLopHoc> list;
+    
     public Lophoc() {
         initComponents();
+        HienThi();
+      
     }
+     private void HienThi() {
+        list = csdl.getListLop();
+        tbLopHoc.setModel(new customLopHoc(list)); 
+    }
+ 
+    public void Them(){
+        eLopHoc t= new eLopHoc();
+        
+        if(txt_maLop.getText()!="" || txt_tenLop.getText()!="" || txt_SLSV.getText() !=""){
+            if(Integer.parseInt(txt_SLSV.getText())>0){
+                t.setMalop(txt_maLop.getText());
+                t.setTenlop(txt_tenLop.getText());
+                t.setSosinhvien(Integer.parseInt(txt_SLSV.getText()));
 
+                if(csdl.ThemLop(t)){
+                    list.add(t);
+                    JOptionPane.showMessageDialog(this, "Thêm thành công","", JOptionPane.INFORMATION_MESSAGE);
+                    HienThi();
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "Tên Lớp đã tồn tại!\n Vui lòng nhập tên tài khoản khác!", "", JOptionPane.WARNING_MESSAGE);
+            }
+            else
+                JOptionPane.showMessageDialog(this,"Không được bỏ trống!","",JOptionPane.WARNING_MESSAGE);
+        }
+        else
+            JOptionPane.showMessageDialog(this,"Số sinh viên phải > 0","",JOptionPane.WARNING_MESSAGE);
+    }
+    public void Xoa(){
+        int i = tbLopHoc.getSelectedRow();
+        if(i<0){
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn lớp cần xóa", "", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            int response =JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn xóa?","",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+            if(response == JOptionPane.YES_OPTION){
+                csdl.XoaLop(list.get(i).getMalop());
+                HienThi();
+                JOptionPane.showMessageDialog(this, "Xóa thành công","",JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    }
+    
+    public void Sua(){
+        int n= tbLopHoc.getSelectedRow();
+        eLopHoc x= list.get(n);
+        eLopHoc t= new eLopHoc();
+        if(txt_maLop.getText()!="" || txt_tenLop.getText()!="" || txt_SLSV.getText() !=""){
+                t.setMalop(txt_maLop.getText());
+                t.setTenlop(txt_tenLop.getText());
+               if(Integer.parseInt(txt_SLSV.getText())>0){
+                   t.setSosinhvien(Integer.parseInt(txt_SLSV.getText()));
+               }
+            if(csdl.SuaLop(x, t)){
+                JOptionPane.showMessageDialog(this, "Sửa Lớp thành công!", "", JOptionPane.INFORMATION_MESSAGE);
+                HienThi();
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Tên Lớp đã tồn tại!\n Vui lòng nhập Tên khác!", "", JOptionPane.WARNING_MESSAGE);
+        }
+        else
+            JOptionPane.showMessageDialog(this,"Không được bỏ trống!","",JOptionPane.WARNING_MESSAGE);
+        
+    }
+    
+    public void Xoatrang(){
+        txt_maLop.setText("");
+        txt_tenLop.setText("");
+        txt_SLSV.setText("");
+        txt_tim.setText("");
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,20 +108,20 @@ public class Lophoc extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbLopHoc = new javax.swing.JTable();
         btnThem = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btxoa = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btTim = new javax.swing.JButton();
+        btReset = new javax.swing.JButton();
+        txt_tim = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txt_maLop = new javax.swing.JTextField();
+        txt_tenLop = new javax.swing.JTextField();
+        txt_SLSV = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -70,9 +148,9 @@ public class Lophoc extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTable1.setBackground(new java.awt.Color(0, 102, 102));
-        jTable1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbLopHoc.setBackground(new java.awt.Color(0, 102, 102));
+        tbLopHoc.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        tbLopHoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null}
             },
@@ -80,7 +158,12 @@ public class Lophoc extends javax.swing.JPanel {
                 "Mã lớp", "Tên lớp", "Số lượng sinh viên"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tbLopHoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbLopHocMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbLopHoc);
 
         btnThem.setBackground(new java.awt.Color(0, 102, 102));
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add-icon.png"))); // NOI18N
@@ -91,9 +174,14 @@ public class Lophoc extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 102, 102));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Actions-edit-delete-icon.png"))); // NOI18N
-        jButton2.setText("Xóa");
+        btxoa.setBackground(new java.awt.Color(0, 102, 102));
+        btxoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Actions-edit-delete-icon.png"))); // NOI18N
+        btxoa.setText("Xóa");
+        btxoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btxoaActionPerformed(evt);
+            }
+        });
 
         btnSua.setBackground(new java.awt.Color(0, 102, 102));
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Actions-configure-toolbars-icon.png"))); // NOI18N
@@ -104,13 +192,23 @@ public class Lophoc extends javax.swing.JPanel {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(0, 102, 102));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search-icon.png"))); // NOI18N
-        jButton4.setText("Tìm kiếm");
+        btTim.setBackground(new java.awt.Color(0, 102, 102));
+        btTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search-icon.png"))); // NOI18N
+        btTim.setText("Tìm kiếm");
+        btTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btTimActionPerformed(evt);
+            }
+        });
 
-        jButton5.setBackground(new java.awt.Color(0, 102, 102));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Reset-icon.png"))); // NOI18N
-        jButton5.setText("Reset");
+        btReset.setBackground(new java.awt.Color(0, 102, 102));
+        btReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Reset-icon.png"))); // NOI18N
+        btReset.setText("Reset");
+        btReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btResetActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -136,15 +234,15 @@ public class Lophoc extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_SLSV, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_tenLop, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(117, 117, 117)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_maLop, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -153,15 +251,15 @@ public class Lophoc extends javax.swing.JPanel {
                 .addGap(39, 39, 39)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_maLop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_tenLop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_SLSV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
 
@@ -179,9 +277,9 @@ public class Lophoc extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jTextField1)
+                                .addComponent(txt_tim)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btTim, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(91, 91, 91)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,8 +287,8 @@ public class Lophoc extends javax.swing.JPanel {
                             .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(100, 100, 100)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btxoa, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btReset, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -202,37 +300,80 @@ public class Lophoc extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btTim, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_tim, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btxoa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btReset, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(120, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        
+        Them();
+        Xoatrang();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        
+         Sua();
+        HienThi();
+        Xoatrang();
     }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btxoaActionPerformed
+        // TODO add your handling code here:
+        Xoa();
+        Xoatrang();
+    }//GEN-LAST:event_btxoaActionPerformed
+
+    private void btResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btResetActionPerformed
+        // TODO add your handling code here:
+        Xoatrang();
+        HienThi();
+    }//GEN-LAST:event_btResetActionPerformed
+
+    private void tbLopHocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbLopHocMouseClicked
+         int index = tbLopHoc.getSelectedRow();
+        eLopHoc p = null;
+        if (index > -1) {
+                p = list.get(index);
+                txt_maLop.setText(p.getMalop());
+                txt_tenLop.setText(p.getTenlop());
+                txt_SLSV.setText(String.valueOf(p.getSosinhvien()));
+            } 
+    }//GEN-LAST:event_tbLopHocMouseClicked
+
+    private void btTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTimActionPerformed
+             if (txt_tim.getText().trim().equals("")) {
+                if (tbLopHoc.getRowCount()==0) {
+                    String msg = "Danh sách trống !";
+                    JOptionPane.showMessageDialog(this, msg, "Thông báo", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    String msg = "Bạn hãy mã lớp để tìm kiếm !";
+                    JOptionPane.showMessageDialog(this, msg, "Thông báo", JOptionPane.ERROR_MESSAGE);
+                }
+                }
+             else{
+                    new DaoLophoc().TimKiem(txt_tim.getText());
+                }
+            tbLopHoc.setModel(new customLopHoc(model.listLH)); 
+    }//GEN-LAST:event_btTimActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btReset;
+    private javax.swing.JButton btTim;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btxoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -240,10 +381,12 @@ public class Lophoc extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTable tbLopHoc;
+    private javax.swing.JTextField txt_SLSV;
+    private javax.swing.JTextField txt_maLop;
+    private javax.swing.JTextField txt_tenLop;
+    private javax.swing.JTextField txt_tim;
     // End of variables declaration//GEN-END:variables
+
+   
 }

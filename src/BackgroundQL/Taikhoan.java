@@ -124,7 +124,7 @@ public class Taikhoan extends javax.swing.JPanel {
         txtMatKhau = new javax.swing.JTextField();
         txtTennguoidung = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         btnThem = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -190,6 +190,11 @@ public class Taikhoan extends javax.swing.JPanel {
         btnTimKiem.setBackground(new java.awt.Color(0, 102, 102));
         btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search-icon.png"))); // NOI18N
         btnTimKiem.setText("Tìm kiếm");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         btnReset.setBackground(new java.awt.Color(0, 102, 102));
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Reset-icon.png"))); // NOI18N
@@ -220,7 +225,7 @@ public class Taikhoan extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Loại tài khoản");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sinh viên", "Giảng viên" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sinh viên", "Giảng viên" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -357,6 +362,10 @@ public class Taikhoan extends javax.swing.JPanel {
         else
             jComboBox1.setSelectedIndex(1);
     }//GEN-LAST:event_tableTaiKhoanMouseClicked
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTimKiemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

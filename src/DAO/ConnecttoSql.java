@@ -22,7 +22,7 @@ public class ConnecttoSql {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                     
             try {
-                return DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=QuanLySinhVien;user=sa;password=123456");
+                return DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=QuanLySinhVien;user=sa;password=123456A@");
             } catch (SQLException ex) {
                 Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
             }

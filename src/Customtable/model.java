@@ -5,6 +5,7 @@
  */
 package Customtable;
 
+import Emtity.eLopHoc;
 import Emtity.eSinhVien;
 import java.util.ArrayList;
 
@@ -14,4 +15,5 @@ import java.util.ArrayList;
  */
 public class model {
     public static ArrayList<eSinhVien> listSV = new ArrayList<eSinhVien>();
+    public static ArrayList<eLopHoc> listLH = new ArrayList<eLopHoc>();
 }
