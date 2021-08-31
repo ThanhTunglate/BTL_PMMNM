@@ -9,6 +9,6 @@ package DAO;
  *
  * @author thanh
  */
-public class DaoDangkimonhoc {
+public class DaoDangki {
     
 }

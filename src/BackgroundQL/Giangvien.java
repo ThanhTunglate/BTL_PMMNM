@@ -12,12 +12,13 @@ package BackgroundQL;
 public class Giangvien extends javax.swing.JPanel {
 
     /**
-     * Creates new form Monhoc
+     * Creates new form 
      */
     public Giangvien() {
         initComponents();
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
