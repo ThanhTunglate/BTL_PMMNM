@@ -50,7 +50,7 @@ public class Taichinh extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this,"Không tìm thấy sinh viên!","",JOptionPane.WARNING_MESSAGE);
         }
         else{
-            
+            JOptionPane.showMessageDialog(this,"Không được bỏ trống!","",JOptionPane.WARNING_MESSAGE);
         }
     }
     /**
