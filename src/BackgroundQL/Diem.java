@@ -67,7 +67,7 @@ public class Diem extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "STT", "Mã lớp", "Tên môn", "Số sinh viên"
+                "STT", "Mã môn", "Tên môn", "Số sinh viên"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

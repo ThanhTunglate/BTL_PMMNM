@@ -100,7 +100,7 @@ public class QlyDiem extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel2.setText("Mã lớp");
+        jLabel2.setText("Mã môn");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
@@ -118,23 +118,22 @@ public class QlyDiem extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã sinh viên", "Họ và tên", "Điểm thường xuyên 1", "Điểm thường xuyên 2", "Điểm giữa kì", "Điểm thi", "Điểm TB", "Xếp loại"
+                "STT", "Mã sinh viên", "Điểm thường xuyên 1", "Điểm thường xuyên 2", "Điểm giữa kì", "Điểm thi", "Điểm TB", "Xếp loại"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setMaxWidth(50);
             jTable1.getColumnModel().getColumn(1).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(2).setMinWidth(150);
-            jTable1.getColumnModel().getColumn(5).setMaxWidth(90);
-            jTable1.getColumnModel().getColumn(6).setMaxWidth(60);
+            jTable1.getColumnModel().getColumn(4).setMaxWidth(90);
+            jTable1.getColumnModel().getColumn(5).setMaxWidth(60);
+            jTable1.getColumnModel().getColumn(6).setMaxWidth(90);
             jTable1.getColumnModel().getColumn(7).setMaxWidth(90);
-            jTable1.getColumnModel().getColumn(8).setMaxWidth(90);
         }
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 102));

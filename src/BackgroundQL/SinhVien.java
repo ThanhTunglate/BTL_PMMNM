@@ -9,7 +9,9 @@ import Customtable.customSinhVien;
 import static Customtable.model.listSV;
 import DAO.ConnecttoSql;
 import DAO.DaoSinhvien;
+import DAO.DaoTaikhoan;
 import Emtity.eSinhVien;
+import Emtity.eTaiKhoan;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,6 +30,7 @@ public class SinhVien extends javax.swing.JPanel {
     /**
      * Creates new form 
      */
+    DaoTaikhoan csdl = new DaoTaikhoan();
     public DaoSinhvien x = new DaoSinhvien();
     private String maSV, tenSV, maLH, gioiTinh, ngaySinh, diaChi, soDT;
     
@@ -359,13 +362,20 @@ public class SinhVien extends javax.swing.JPanel {
             soDT = txtSDT.getText();
             ArrayList<eSinhVien> listCheck = new DaoSinhvien().CheckMaSV(maSV);
             eSinhVien sv = new eSinhVien(maSV, tenSV, maLH, gioiTinh, ngaySinh, diaChi, soDT);
+            
+            eTaiKhoan tk= new eTaiKhoan();
+                tk.setTaikhoan(txtMaSV.getText());
+                tk.setMatkhau(txtMaSV.getText()+"abc");
+                tk.setLoai("Sinh viên");
+                System.out.println(tk.getTaikhoan());
+                
             if (listCheck.size() > 0) {
                 JOptionPane.showMessageDialog(this, "Mã Sinh viên bị trùng", "Vui lòng kiểm tra lại", JOptionPane.ERROR_MESSAGE);
                 txtMaSV.setText("");
                 txtMaSV.requestFocus();
 
             } 
-            else {
+            else if(csdl.ThemTaiKhoan(tk)){
                 new DaoSinhvien().addNew(sv);
                 JOptionPane.showMessageDialog(this, "Thêm thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             }
