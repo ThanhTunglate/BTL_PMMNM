@@ -33,6 +33,6 @@ public class ConnecttoSql {
     }
     
     public static void main(String[] args) {
-        getconConnection();
+        System.out.println(getconConnection().toString());
     }
 }
