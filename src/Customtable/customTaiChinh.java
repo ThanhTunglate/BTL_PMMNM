@@ -5,10 +5,12 @@
  */
 package Customtable;
 
+import javax.swing.table.AbstractTableModel;
+
 /**
  *
  * @author thanh
  */
-public class customTaiChinh {
+public class customTaiChinh{
     
 }

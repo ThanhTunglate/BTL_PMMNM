@@ -16,6 +16,7 @@ public class Giangvien extends javax.swing.JPanel {
      */
     public Giangvien() {
         initComponents();
+        
     }
     
     
