@@ -11,6 +11,8 @@ import BackgroundSV.KetQuaHocTap;
 import BackgroundSV.Ketquathi;
 import BackgroundSV.ThanhToan;
 import BackgroundSV.ThongTinCanhan;
+import Customtable.model;
+import DAO.DaoSinhvien;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +27,10 @@ public class BgrSV extends javax.swing.JFrame {
     public BgrSV() {
         initComponents();
         setLocationRelativeTo(null);
+        new DaoSinhvien().findByMaSV(Amain.DangNhap.nameLogin);
+        txtMaSV.setText(model.listSV.get(0).getMasinhvien());
+        txtName.setText(model.listSV.get(0).getTensinhvien());
+        txtClass.setText(model.listSV.get(0).getMalop());
     }
 
     /**
@@ -42,9 +48,9 @@ public class BgrSV extends javax.swing.JFrame {
         label1 = new java.awt.Label();
         label2 = new java.awt.Label();
         label3 = new java.awt.Label();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtMaSV = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
+        txtClass = new javax.swing.JTextField();
         btnHocphan = new javax.swing.JButton();
         btnTaichinh = new javax.swing.JButton();
         btnKQhoctap = new javax.swing.JButton();
@@ -81,17 +87,17 @@ public class BgrSV extends javax.swing.JFrame {
         label3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         label3.setText("Lớp hành chính");
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jTextField1.setEnabled(false);
-        jTextField1.setName("txtMSV"); // NOI18N
+        txtMaSV.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        txtMaSV.setEnabled(false);
+        txtMaSV.setName("txtMSV"); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jTextField2.setEnabled(false);
-        jTextField2.setName("txtHoten"); // NOI18N
+        txtName.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        txtName.setEnabled(false);
+        txtName.setName("txtHoten"); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jTextField3.setEnabled(false);
-        jTextField3.setName("txtLop"); // NOI18N
+        txtClass.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        txtClass.setEnabled(false);
+        txtClass.setName("txtLop"); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -107,9 +113,9 @@ public class BgrSV extends javax.swing.JFrame {
                     .addComponent(label2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMaSV, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtClass, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(133, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -120,15 +126,15 @@ public class BgrSV extends javax.swing.JFrame {
                         .addGap(11, 11, 11)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtMaSV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jLabel5)))
@@ -426,12 +432,12 @@ public class BgrSV extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
     private javax.swing.JMenuItem miDangxuat;
+    private javax.swing.JTextField txtClass;
+    private javax.swing.JTextField txtMaSV;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }

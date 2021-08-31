@@ -18,8 +18,9 @@ import javax.swing.JOptionPane;
 public class DangNhap extends javax.swing.JFrame {
     DaoTaikhoan csdl = new DaoTaikhoan();
     /**
-     * Creates new form DangNhap  ok
+     * Creates new form DangNhap
      */
+    public static String nameLogin = "";
     public DangNhap() {
         initComponents();
         setLocationRelativeTo(null);
@@ -54,6 +55,7 @@ public class DangNhap extends javax.swing.JFrame {
                     eTaiKhoan tk= csdl.TimKiem(userName);
                         if(tk.getMatkhau().equals(Password) && tk.getLoai().equals("Sinh viên"))
                         {
+                            nameLogin = userName;
                             BgrSV kh=new BgrSV();
                             kh.setVisible(true);
                             this.dispose();

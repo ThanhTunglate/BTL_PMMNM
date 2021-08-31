@@ -7,8 +7,12 @@ package BackgroundQL;
 
 import Customtable.customSinhVien;
 import static Customtable.model.listSV;
+import DAO.ConnecttoSql;
 import DAO.DaoSinhvien;
 import Emtity.eSinhVien;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -17,7 +21,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author thanh
+ * @author Admin
  */
 public class SinhVien extends javax.swing.JPanel {
 
@@ -31,11 +35,26 @@ public class SinhVien extends javax.swing.JPanel {
         initComponents();
         radNam.setSelected(true);
         x.getAll();
+        loadCbxMaLop();
         loadData();
     }
     
     private void loadData(){
         jTableSV.setModel(new customSinhVien(listSV));
+    }
+    
+    private void loadCbxMaLop() {
+        Connection conn = ConnecttoSql.getconConnection();
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM LopHoc");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                cbxMaLop.addItem(rs.getString(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -171,7 +190,6 @@ public class SinhVien extends javax.swing.JPanel {
         jLabel8.setText("SĐT");
 
         cbxMaLop.setBackground(new java.awt.Color(0, 102, 102));
-        cbxMaLop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LH01", "LH02", "CNTT3", "HTTT1", "HTTT2", "HTTT3", "KTPM1", "KTPM2", "KTPM3" }));
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -445,6 +463,7 @@ public class SinhVien extends javax.swing.JPanel {
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
         x.getAll();
+        clearText();
         loadData();
     }//GEN-LAST:event_btnResetActionPerformed
     private void clearText(){
