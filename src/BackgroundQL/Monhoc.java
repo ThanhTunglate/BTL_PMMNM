@@ -46,7 +46,7 @@ public class Monhoc extends javax.swing.JPanel {
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tableMH = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -162,7 +162,7 @@ public class Monhoc extends javax.swing.JPanel {
                 .addContainerGap(104, Short.MAX_VALUE))
         );
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tableMH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -173,7 +173,7 @@ public class Monhoc extends javax.swing.JPanel {
                 "Mã môn", "Tên môn", "Số tín", "Hình thức thi"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tableMH);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -257,11 +257,11 @@ public class Monhoc extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTable tableMH;
     // End of variables declaration//GEN-END:variables
 }
