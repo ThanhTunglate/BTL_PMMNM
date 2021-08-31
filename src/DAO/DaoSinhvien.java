@@ -64,8 +64,7 @@ public class DaoSinhvien {
         } 
         this.getAll();
     }
-     public ArrayList<eSinhVien> CheckMaSV(String masv) {
-        ArrayList<eSinhVien> list = null;
+     public eSinhVien CheckMaSV(String masv) {
         PreparedStatement psCheck = null;
         ResultSet rs = null;
         conn = ConnecttoSql.getconConnection();
@@ -73,16 +72,21 @@ public class DaoSinhvien {
             psCheck = conn.prepareStatement("select * from SinhVien where MaSV=?");
             psCheck.setString(1, masv);
             rs = psCheck.executeQuery();
-            list = new ArrayList<eSinhVien>();
             while (rs.next()) {
-                eSinhVien sinhVien = new eSinhVien();
-                sinhVien.setMasinhvien(rs.getString(1));
-                list.add(sinhVien);
+                eSinhVien sv = new eSinhVien();
+                sv.setMasinhvien(rs.getString(1));
+                sv.setTensinhvien(rs.getString(2));
+                sv.setMalop(rs.getString(3));
+                sv.setGioitinh(rs.getString(4));
+                sv.setNgaysinh(rs.getString(5));
+                sv.setDiachi(rs.getString(6));
+                sv.setSDT(rs.getString(7));
+                return sv;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         } 
-        return list;
+        return null;
     }
      public void updateByMaSV(eSinhVien sv) {
         PreparedStatement ps = null;

@@ -360,7 +360,7 @@ public class SinhVien extends javax.swing.JPanel {
             ngaySinh = txtNgaySinh.getText();
             diaChi = txtDiaChi.getText();
             soDT = txtSDT.getText();
-            ArrayList<eSinhVien> listCheck = new DaoSinhvien().CheckMaSV(maSV);
+            eSinhVien s= x.CheckMaSV(maSV);
             eSinhVien sv = new eSinhVien(maSV, tenSV, maLH, gioiTinh, ngaySinh, diaChi, soDT);
             
             eTaiKhoan tk= new eTaiKhoan();
@@ -368,8 +368,7 @@ public class SinhVien extends javax.swing.JPanel {
                 tk.setMatkhau(txtMaSV.getText()+"abc");
                 tk.setLoai("Sinh viên");
                 System.out.println(tk.getTaikhoan());
-                
-            if (listCheck.size() > 0) {
+            if (s!=null) {
                 JOptionPane.showMessageDialog(this, "Mã Sinh viên bị trùng", "Vui lòng kiểm tra lại", JOptionPane.ERROR_MESSAGE);
                 txtMaSV.setText("");
                 txtMaSV.requestFocus();

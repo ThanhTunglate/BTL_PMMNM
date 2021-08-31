@@ -5,19 +5,54 @@
  */
 package BackgroundQL;
 
+import DAO.DaoSinhvien;
+import DAO.DaoTaichinh;
+import Emtity.eSinhVien;
+import Emtity.eTaiChinh;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author thanh
  */
 public class Taichinh extends javax.swing.JPanel {
-
+    DaoSinhvien sv = new DaoSinhvien();
+    DaoTaichinh csdl = new DaoTaichinh();
     /**
      * Creates new form Monhoc
      */
     public Taichinh() {
         initComponents();
     }
-
+    
+    public void Kiemtra(){
+        if(txtNhap.getText()!=""){
+            eSinhVien s= sv.CheckMaSV(txtNhap.getText());
+            if(s!=null){
+                eTaiChinh tc = csdl.getListTaiChinh(s.getMasinhvien());
+                txtMasv.setText(s.getMasinhvien());
+                txtHoTen.setText(s.getTensinhvien());
+                txtGioiTinh.setText(s.getGioitinh());
+                txtNgaySinh.setText(s.getNgaysinh());
+                txtDiachi.setText(s.getDiachi());
+                txtSDT.setText(s.getSDT());
+                txtMasv.setText(s.getMasinhvien());
+                txtLop.setText(s.getMalop());
+                if(tc!=null){
+                    txtTaikhoan.setText(Double.toString(tc.getSotiendu()));
+                    txtNo.setText(Double.toString(tc.getSotienno()));
+                }
+                else
+                    JOptionPane.showMessageDialog(this,"Sinh viên chưa từng đăng kí môn học nào!\n"
+                            + "Không thể nạp!","",JOptionPane.WARNING_MESSAGE);
+            }
+            else
+                JOptionPane.showMessageDialog(this,"Không tìm thấy sinh viên!","",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,7 +77,7 @@ public class Taichinh extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtSDT = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        txtLop = new javax.swing.JTextField();
         SĐT = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -122,7 +157,7 @@ public class Taichinh extends javax.swing.JPanel {
 
         txtSDT.setEnabled(false);
 
-        jTextField7.setEnabled(false);
+        txtLop.setEnabled(false);
 
         SĐT.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         SĐT.setForeground(new java.awt.Color(255, 255, 255));
@@ -148,7 +183,7 @@ public class Taichinh extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtLop, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(SĐT)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -205,7 +240,7 @@ public class Taichinh extends javax.swing.JPanel {
                     .addComponent(SĐT))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -282,6 +317,11 @@ public class Taichinh extends javax.swing.JPanel {
         btnKiemtra.setBackground(new java.awt.Color(0, 102, 102));
         btnKiemtra.setForeground(new java.awt.Color(255, 255, 255));
         btnKiemtra.setText("Kiểm tra");
+        btnKiemtra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKiemtraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -293,33 +333,36 @@ public class Taichinh extends javax.swing.JPanel {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel10))
-                                .addGap(32, 32, 32)
+                                .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtNo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel13))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel11)
+                                            .addComponent(jLabel10))
+                                        .addGap(32, 32, 32)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(txtNo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel13))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(txtTaikhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel12))))
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtTaikhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel12))))
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(93, 93, 93)
+                                        .addComponent(txtNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(93, 93, 93)
-                                .addComponent(txtNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(btnKiemtra))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addComponent(jLabel16)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                                .addGap(221, 221, 221)
+                                .addComponent(btnKiemtra)))
+                        .addContainerGap(24, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel16)
+                        .addGap(202, 202, 202))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,6 +395,10 @@ public class Taichinh extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnKiemtraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKiemtraActionPerformed
+        Kiemtra();
+    }//GEN-LAST:event_btnKiemtraActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel SĐT;
@@ -376,10 +423,10 @@ public class Taichinh extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField txtDiachi;
     private javax.swing.JTextField txtGioiTinh;
     private javax.swing.JTextField txtHoTen;
+    private javax.swing.JTextField txtLop;
     private javax.swing.JTextField txtMasv;
     private javax.swing.JTextField txtNaptien;
     private javax.swing.JTextField txtNgaySinh;
