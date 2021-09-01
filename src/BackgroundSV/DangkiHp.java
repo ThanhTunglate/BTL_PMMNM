@@ -24,17 +24,21 @@ public class DangkiHp extends javax.swing.JFrame {
      */
     DaoDangki csdl = new DaoDangki();
     ArrayList<eDangki> list;
+    ArrayList<eDangki> list1;
     public DangkiHp() {
         initComponents();
         setLocationRelativeTo(null);
         Hienthi();
         System.out.println("BackgroundSV.DangkiHp.<init>()");
     }
-     public String Masv;
+     public String Masv= Amain.DangNhap.nameLogin;
      
      public void Hienthi(){
          list= csdl.getMonHoc();
          table1.setModel(new customDangki(list));
+         list1 = csdl.getlast(Masv);
+         table2.setModel(new customDangki(list1));
+         System.out.println(Masv);
      }
     /**
      * This method is called from within the constructor to initialize the form.

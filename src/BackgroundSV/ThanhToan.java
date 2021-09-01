@@ -22,14 +22,13 @@ public class ThanhToan extends javax.swing.JFrame {
     DaoSinhvien sv= new DaoSinhvien();
     DaoTaichinh csdl = new DaoTaichinh();
     ArrayList<eDangki> list;
-    public String Masv;
+    public String Masv = Amain.DangNhap.nameLogin;
     /**
      * Creates new form ThanhToan
      */
     public ThanhToan() {
         initComponents();
         setLocationRelativeTo(null);
-        this.Masv= Masv;
         Setting();
         HienThi();
     }
