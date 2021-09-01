@@ -53,6 +53,18 @@ public class Taichinh extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Không được bỏ trống!","",JOptionPane.WARNING_MESSAGE);
         }
     }
+    
+    public void Nap(){
+        if(txtNaptien.getText()==""){
+            JOptionPane.showMessageDialog(this,"Vui lòng nhập số tiền muốn nạp!","",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            if(csdl.NapTien(txtMasv.getText(), Double.parseDouble(txtNaptien.getText()))){
+                JOptionPane.showMessageDialog(this,"Nạp thành công!","",JOptionPane.INFORMATION_MESSAGE);
+                Kiemtra();
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -90,7 +102,7 @@ public class Taichinh extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         txtNaptien = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnNaptien = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         txtNhap = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -272,8 +284,13 @@ public class Taichinh extends javax.swing.JPanel {
 
         jLabel15.setText("Số tiền nạp");
 
-        jButton2.setBackground(new java.awt.Color(255, 204, 102));
-        jButton2.setText("OK");
+        btnNaptien.setBackground(new java.awt.Color(255, 204, 102));
+        btnNaptien.setText("OK");
+        btnNaptien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNaptienActionPerformed(evt);
+            }
+        });
 
         jLabel17.setText("VND");
 
@@ -292,7 +309,7 @@ public class Taichinh extends javax.swing.JPanel {
                         .addComponent(jLabel17)
                         .addGap(84, 84, 84))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnNaptien, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(138, 138, 138))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel14)
@@ -309,7 +326,7 @@ public class Taichinh extends javax.swing.JPanel {
                     .addComponent(jLabel15)
                     .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNaptien, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59))
         );
 
@@ -398,11 +415,15 @@ public class Taichinh extends javax.swing.JPanel {
         Kiemtra();
     }//GEN-LAST:event_btnKiemtraActionPerformed
 
+    private void btnNaptienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNaptienActionPerformed
+        Nap();
+    }//GEN-LAST:event_btnNaptienActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel SĐT;
     private javax.swing.JButton btnKiemtra;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnNaptien;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

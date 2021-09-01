@@ -5,9 +5,13 @@
  */
 package BackgroundSV;
 
+import Customtable.customThanhtoan;
+import DAO.DaoDangki;
 import DAO.DaoSinhvien;
 import DAO.DaoTaichinh;
+import Emtity.eDangki;
 import Emtity.eTaiChinh;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +21,8 @@ import javax.swing.JOptionPane;
 public class ThanhToan extends javax.swing.JFrame {
     DaoSinhvien sv= new DaoSinhvien();
     DaoTaichinh csdl = new DaoTaichinh();
+    ArrayList<eDangki> list;
+    public String Masv;
     /**
      * Creates new form ThanhToan
      */
@@ -24,9 +30,9 @@ public class ThanhToan extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         Setting();
+        HienThi();
     }
     
-    public String Masv;
     
     public void Setting(){
         txtTenSv.setText("Xin chào "+ sv.CheckMaSV(Masv).getTensinhvien());
@@ -36,12 +42,22 @@ public class ThanhToan extends javax.swing.JFrame {
         txtNo.setText(Double.toString(tc.getSotienno()));
     }
     
+    public void HienThi(){
+        list= csdl.getMonHoc(Masv);
+        tableThanhToan.setModel(new customThanhtoan(list));
+    }
     public void Kiemtra(){
-        Double Tong;
+        Double Tong=null;
         int i[]= tableThanhToan.getSelectedRows();
         for (int j : i) {
-            
+            Tong=+(Double.valueOf(list.get(j).getSotinchi())*300000);
         }
+        txtTong.setText(String.valueOf(Tong));
+    }
+    
+    public void ThanhToan(){
+        Kiemtra();
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,7 +77,7 @@ public class ThanhToan extends javax.swing.JFrame {
         tableThanhToan = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
+        txtTong = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         btnThanhToan = new javax.swing.JButton();
@@ -144,7 +160,7 @@ public class ThanhToan extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setText("Môn chưa thanh toán");
 
-        jTextField3.setEnabled(false);
+        txtTong.setEnabled(false);
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel7.setText("Tổng tiền");
@@ -178,7 +194,7 @@ public class ThanhToan extends javax.swing.JFrame {
                         .addComponent(jLabel7))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTong, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -195,7 +211,7 @@ public class ThanhToan extends javax.swing.JFrame {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addComponent(btnKiemtra)
@@ -340,7 +356,7 @@ public class ThanhToan extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void btnKiemtraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKiemtraActionPerformed
-        
+        Kiemtra();
     }//GEN-LAST:event_btnKiemtraActionPerformed
 
     /**
@@ -396,10 +412,10 @@ public class ThanhToan extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTable tableThanhToan;
     private javax.swing.JTextField txtNo;
     private javax.swing.JTextField txtTaikhoan;
     private javax.swing.JTextField txtTenSv;
+    private javax.swing.JTextField txtTong;
     // End of variables declaration//GEN-END:variables
 }

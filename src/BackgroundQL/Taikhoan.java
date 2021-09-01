@@ -91,6 +91,18 @@ public class Taikhoan extends javax.swing.JPanel {
         
     }
     
+    public void Tim(){
+        if(txtTimkiem.getText()==""){
+            JOptionPane.showMessageDialog(this,"Bạn chưa nhập tìm kiếm!","",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            eTaiKhoan t = csdl.TimKiem(txtTimkiem.getText());
+            ArrayList<eTaiKhoan> a = new ArrayList<>();
+            a.add(t);
+            tableTaiKhoan.setModel(new customTaiKhoan(a));
+        }
+    }
+    
     public void Xoatrang(){
         txtMatKhau.setText("");
         txtTaikhoan.setText("");
@@ -364,7 +376,7 @@ public class Taikhoan extends javax.swing.JPanel {
     }//GEN-LAST:event_tableTaiKhoanMouseClicked
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
 

@@ -5,11 +5,15 @@
  */
 package DAO;
 
+import Emtity.eDangki;
 import Emtity.eTaiChinh;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,6 +28,21 @@ public class DaoTaichinh {
         try {
             PreparedStatement ps= conn.prepareStatement(sql);
             ps.setString(1, String.valueOf(tiennap));
+            ps.setString(2, Masv);
+            return ps.executeUpdate() >0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    public boolean Thanhtoan(double tienn){
+        conn = ConnecttoSql.getconConnection();
+        String sql="UPDATE TaiChinh SET SoDuKhaDung=? WHERE MaSV=?"
+                + "VALUES(?,?,?)";
+        try {
+            PreparedStatement ps= conn.prepareStatement(sql);
+            ps.setString(1, String.valueOf(tien));
             ps.setString(2, Masv);
             return ps.executeUpdate() >0;
         } catch (Exception e) {
@@ -50,5 +69,42 @@ public class DaoTaichinh {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public ArrayList<eDangki> getDangKi(String Masv){
+        try {
+            ArrayList<eDangki> list = new ArrayList();
+            String sql ="SELECT MaHP FROM DangKi WHERE MaSV='"+Masv+"' and Trangthai=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, "Chưa nộp học phí");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                eDangki dk = new eDangki();
+                dk.setMaHP(rs.getString("MaHP"));
+                list.add(dk);
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoDiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public ArrayList<eDangki> getMonHoc(String Masv){
+        ArrayList<eDangki> list = getDangKi(Masv);
+        for(eDangki item : list){
+            try {
+                String sql ="SELECT TenMH, SoTC FROM MonHoc WHERE MaMH ='"+item.getMaHP().substring(0, 5)+"'";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                   item.setTenHP(rs.getString("TenMH"));
+                   item.setSotinchi("SoTC");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(DaoDiem.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return list;
     }
 }

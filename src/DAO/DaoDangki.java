@@ -11,7 +11,10 @@ import Emtity.eMonHoc;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,62 +22,40 @@ import java.util.ArrayList;
  */
 public class DaoDangki {
     private Connection conn;
-    public ArrayList<eDangki> getListDK(){
-        DaoMonhoc x = new DaoMonhoc();
-        DaoHocphan y = new DaoHocphan();
-        conn=ConnecttoSql.getconConnection();
-        ArrayList<eDangki> list = new ArrayList<>();
-        ArrayList<eMonHoc> mh = x.getListMH();
-        ArrayList<eHocphan> hp = y.getListHP();
-        String sql1="SELECT * FROM MonHoc";
-        String sql2="SELECT * FROM MonHocDangKi";
+    public ArrayList<eDangki> getMonHocDangKi(){
         try {
-            PreparedStatement ps1= conn.prepareStatement(sql1);
-            ResultSet rs1=ps1.executeQuery();
-            eMonHoc tk1= new eMonHoc();
-            while(rs1.next()){
-                tk1.setMamon(rs1.getString("MaMH"));
-                tk1.setTenmon(rs1.getString("TenMH"));
-                tk1.setSotinchi(rs1.getString("SoTC"));
-                tk1.setHinhthucthi(rs1.getString("HinhThucThi"));
-                mh.add(tk1);
+            ArrayList<eDangki> list = new ArrayList();
+            String sql ="SELECT MaHP, SoLuongSV FROM MonHocDangKi";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                eDangki dk = new eDangki();
+                dk.setMaHP(rs.getString("MaHP"));
+                dk.setSoSV(rs.getString("SoLuongSV"));
+                list.add(dk);
             }
-            
-            PreparedStatement ps2= conn.prepareStatement(sql2);
-            ResultSet rs2=ps2.executeQuery();
-            while(rs2.next()){
-                eHocphan tk2 = new eHocphan();
-                tk2.setMaGV(rs2.getString("MaGV"));
-                tk2.setMamon(rs2.getString("MaHP"));
-                tk2.setSoSV(rs2.getString("SoluongSV"));
-                hp.add(tk2);
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoDiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public ArrayList<eDangki> getMonHoc(){
+        ArrayList<eDangki> list = getMonHocDangKi();
+        for(eDangki item : list){
+            try {
+                String sql ="SELECT TenMH, SoTC FROM MonHoc WHERE MaMH ='"+item.getMaHP().substring(0, 5)+"'";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                   item.setTenHP(rs.getString("TenMH"));
+                   item.setSotinchi("SoTC");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(DaoDiem.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            System.out.println(hp.size()+ mh.size());
-            
-            for(int i=0; i < hp.size(); i++ ){
-               eDangki dk= new eDangki();
-               dk.setMaHP(hp.get(i).getMamon());
-               dk.setMagiangvien(hp.get(i).getMaGV());
-               dk.setSoSV(hp.get(i).getSoSV());
-//               dk.setTenHP(x.TimKiem(dk.getMaHP()).getTenmon());
-//               dk.setSotinchi(x.TimKiem(hp.get(i).getMamon()).getSotinchi());
-//               dk.setTenHP(x.TimKiem(hp.get(i).getMamon()).getTenmon());
-               for(int j=0 ; j< mh.size(); j++){
-                   if((hp.get(i).getMamon().substring(0, 5)) == mh.get(j).getMamon()){
-                       dk.setTenHP(mh.get(j).getTenmon());
-                       dk.setSotinchi(mh.get(j).getSotinchi());
-                       dk.setHinhthucthi(mh.get(j).getHinhthucthi());
-                   }
-               }
-               if(dk.getTenHP() !=null){
-                   list.add(dk);
-               }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return list;
     }
-    
 }
