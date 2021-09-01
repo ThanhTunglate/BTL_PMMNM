@@ -29,6 +29,7 @@ public class ThanhToan extends javax.swing.JFrame {
     public ThanhToan() {
         initComponents();
         setLocationRelativeTo(null);
+        this.Masv= Masv;
         Setting();
         HienThi();
     }
