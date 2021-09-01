@@ -20,12 +20,13 @@ import java.util.logging.Logger;
  * @author thanh
  */
 public class DaoDiem {
-    Connection connect = ConnecttoSql.getconConnection();
+    Connection conn;
     public ArrayList<eDangki> getMonHocDangKi(){
+        conn=ConnecttoSql.getconConnection();
         try {
             ArrayList<eDangki> list = new ArrayList();
             String sql ="SELECT MaHP, SoLuongSV FROM MonHocDangKi";
-            PreparedStatement ps = connect.prepareStatement(sql);
+            PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 eDangki dk = new eDangki();
@@ -40,11 +41,12 @@ public class DaoDiem {
         return null;
     }
     public ArrayList<eDangki> getTenMonHoc(){
+        conn=ConnecttoSql.getconConnection();
         ArrayList<eDangki> list = getMonHocDangKi();
         for(eDangki item : list){
             try {
                 String sql ="SELECT TenMH FROM MonHoc WHERE MaMH ='"+item.getMaHP().substring(0, 5)+"'";
-                PreparedStatement ps = connect.prepareStatement(sql);
+                PreparedStatement ps = conn.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
                    item.setTenHP(rs.getString("TenMH"));
@@ -56,10 +58,11 @@ public class DaoDiem {
         return list;
     }
     public ArrayList<eDiem> getDiem(String MaHP){
+        conn=ConnecttoSql.getconConnection();
         try {
             ArrayList<eDiem> list = new ArrayList<>();
             String sql ="Select * FROM DangKi WHERE MaHP = '"+MaHP+"'";
-            PreparedStatement ps = connect.prepareStatement(sql);
+            PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 eDiem diem = new eDiem();

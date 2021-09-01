@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  * @author thanh
  */
 public class DaoDangki {
-    private Connection conn;
+    private Connection conn = ConnecttoSql.getconConnection();
     public ArrayList<eDangki> getMonHocDangKi(){
         try {
             ArrayList<eDangki> list = new ArrayList();
