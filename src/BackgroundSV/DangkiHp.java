@@ -8,6 +8,10 @@ package BackgroundSV;
 import Amain.*;
 import BackgroundQL.BgrQuanly;
 import BackgroundSV.BgrSV;
+import Customtable.customDangki;
+import DAO.DaoDangki;
+import Emtity.eDangki;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,11 +22,20 @@ public class DangkiHp extends javax.swing.JFrame {
     /**
      * Creates new form DangkiHp
      */
+    DaoDangki csdl = new DaoDangki();
+    ArrayList<eDangki> list;
     public DangkiHp() {
         initComponents();
         setLocationRelativeTo(null);
+        Hienthi();
+        System.out.println("BackgroundSV.DangkiHp.<init>()");
     }
      public String Masv;
+     
+     public void Hienthi(){
+         list= csdl.getListDK();
+         table1.setModel(new customDangki(list));
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,7 +55,7 @@ public class DangkiHp extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        btnDangki = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         table2 = new javax.swing.JTable();
@@ -119,9 +132,9 @@ public class DangkiHp extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 102));
 
-        jButton2.setBackground(new java.awt.Color(0, 204, 0));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton2.setText("Đăng kí");
+        btnDangki.setBackground(new java.awt.Color(0, 204, 0));
+        btnDangki.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnDangki.setText("Đăng kí");
 
         jButton3.setBackground(new java.awt.Color(255, 0, 0));
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -133,7 +146,7 @@ public class DangkiHp extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(248, 248, 248)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDangki, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 596, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(137, 137, 137))
@@ -143,7 +156,7 @@ public class DangkiHp extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(btnDangki)
                     .addComponent(jButton3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -274,9 +287,9 @@ public class DangkiHp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDangki;
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnback;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
