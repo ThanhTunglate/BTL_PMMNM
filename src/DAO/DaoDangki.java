@@ -31,6 +31,7 @@ public class DaoDangki {
             ResultSet rs1=ps1.executeQuery();
             eMonHoc tk1= new eMonHoc();
             while(rs1.next()){
+                tk1.setMamon(rs1.getString("MaMH"));
                 tk1.setTenmon(rs1.getString("TenMH"));
                 tk1.setSotinchi(rs1.getString("SoTC"));
                 tk1.setHinhthucthi(rs1.getString("HinhThucThi"));
@@ -52,7 +53,7 @@ public class DaoDangki {
                dk.setMagiangvien(hp.get(i).getMaGV());
                dk.setSoSV(hp.get(i).getSoSV());
                for(int j=0 ; j< mh.size(); j++){
-                   if(hp.get(i).getMamon().substring(0, 6)==mh.get(j).getMamon()){
+                   if(hp.get(i).getMamon().substring(0, 5)==mh.get(j).getMamon()){
                        dk.setTenHP(mh.get(j).getTenmon());
                        dk.setSotinchi(mh.get(j).getSotinchi());
                        dk.setHinhthucthi(mh.get(j).getHinhthucthi());
