@@ -126,12 +126,12 @@ public class DaoDangki {
             PreparedStatement ps= conn.prepareStatement(sql);
             ps.setString(1, tk.getMasinhvien());
             ps.setString(2, tk.getMaHP());
-            ps.setString(3, tk.getDiemtx1());
-            ps.setString(4, tk.getDiemtx2());
-            ps.setString(5, tk.getDiemhs2());
-            ps.setString(6, tk.getDiemthi());
-            ps.setString(6, tk.getDiemTB());
-            ps.setString(6, tk.getTrangThai());
+            ps.setFloat(3, tk.getDiemtx1());
+            ps.setFloat(4, tk.getDiemtx2());
+            ps.setFloat(5, tk.getDiemhs2());
+            ps.setFloat(6, tk.getDiemthi());
+            ps.setFloat(7, tk.getDiemTB());
+            ps.setString(8, tk.getTrangThai());
             return ps.executeUpdate() >0;
         } catch (Exception e) {
             e.printStackTrace();

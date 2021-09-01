@@ -47,11 +47,11 @@ public class DangkiHp extends javax.swing.JFrame {
          eDiem tk= new eDiem();
          tk.setMaHP(list.get(i).getMaHP());
          tk.setMasinhvien(Masv);
-         tk.setDiemTB(String.valueOf(0));
-         tk.setDiemtx1(String.valueOf(0));
-         tk.setDiemtx2(String.valueOf(0));
-         tk.setDiemhs2(String.valueOf(0));
-         tk.setDiemthi(String.valueOf(0));
+         tk.setDiemTB(0);
+         tk.setDiemtx1(0);
+         tk.setDiemtx2(0);
+         tk.setDiemhs2(0);
+         tk.setDiemthi(0);
          tk.setTrangThai("Chưa nộp học phí");
          if(csdl.ThemDangki(tk)){
              Hienthi();
