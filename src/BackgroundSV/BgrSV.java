@@ -84,15 +84,15 @@ public class BgrSV extends javax.swing.JFrame {
         label3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         label3.setText("Lớp hành chính");
 
-        txtMaSV.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        txtMaSV.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtMaSV.setEnabled(false);
         txtMaSV.setName("txtMSV"); // NOI18N
 
-        txtName.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        txtName.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtName.setEnabled(false);
         txtName.setName("txtHoten"); // NOI18N
 
-        txtClass.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        txtClass.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtClass.setEnabled(false);
         txtClass.setName("txtLop"); // NOI18N
 

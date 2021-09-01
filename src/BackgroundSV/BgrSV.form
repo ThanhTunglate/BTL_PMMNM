@@ -302,7 +302,7 @@
             <Component class="javax.swing.JTextField" name="txtMaSV">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="12" style="1"/>
+                  <Font name="Times New Roman" size="14" style="1"/>
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="txtMSV" noResource="true"/>
@@ -311,7 +311,7 @@
             <Component class="javax.swing.JTextField" name="txtName">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="12" style="1"/>
+                  <Font name="Times New Roman" size="14" style="1"/>
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="txtHoten" noResource="true"/>
@@ -320,7 +320,7 @@
             <Component class="javax.swing.JTextField" name="txtClass">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="12" style="1"/>
+                  <Font name="Times New Roman" size="14" style="1"/>
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="txtLop" noResource="true"/>
