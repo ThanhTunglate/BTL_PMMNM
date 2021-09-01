@@ -149,8 +149,8 @@ public class DaoDiem {
                 eKQHT kq = new eKQHT();
                 kq.setMaMH(rs.getString("MaHP"));
                 kq.setDiemTX1(rs.getFloat("DiemTX1"));
-                kq.setDiemTX1(rs.getFloat("DiemTX2"));
-                kq.setDiemTX1(rs.getFloat("DiemHS2"));
+                kq.setDiemTX2(rs.getFloat("DiemTX2"));
+                kq.setDiemHS2(rs.getFloat("DiemHS2"));
                 list.add(kq);
             }
             return list;
@@ -163,7 +163,7 @@ public class DaoDiem {
          ArrayList<eKQHT> list = getKQHT(MaSV);
          for(eKQHT item : list){
              try {
-                 String sql = "SELECT TenMH FROM MonHoc Where MaMH = '"+item.getMaMH()+"'";
+                 String sql = "SELECT TenMH FROM MonHoc Where MaMH = '"+item.getMaMH().substring(0, 5)+"'";
                  PreparedStatement ps = conn.prepareStatement(sql);
                  ResultSet rs = ps.executeQuery();
                  while(rs.next()){
