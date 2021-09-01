@@ -12,21 +12,17 @@ package Emtity;
 public class eMonHoc {
     private String Mamon;
     private String Tenmon;
-    private String Sotinchi;
+    private int Sotinchi;
     private String Hinhthucthi;
-    private String Magiangvien;
-    private String Tengiangvien;
 
     public eMonHoc() {
     }
 
-    public eMonHoc(String Mamon, String Tenmon, String Sotinchi, String Hinhthucthi, String Magiangvien, String Tengiangvien) {
+    public eMonHoc(String Mamon, String Tenmon, int Sotinchi, String Hinhthucthi) {
         this.Mamon = Mamon;
         this.Tenmon = Tenmon;
         this.Sotinchi = Sotinchi;
         this.Hinhthucthi = Hinhthucthi;
-        this.Magiangvien = Magiangvien;
-        this.Tengiangvien = Tengiangvien;
     }
 
     public String getMamon() {
@@ -45,11 +41,11 @@ public class eMonHoc {
         this.Tenmon = Tenmon;
     }
 
-    public String getSotinchi() {
+    public int getSotinchi() {
         return Sotinchi;
     }
 
-    public void setSotinchi(String Sotinchi) {
+    public void setSotinchi(int Sotinchi) {
         this.Sotinchi = Sotinchi;
     }
 
@@ -61,21 +57,4 @@ public class eMonHoc {
         this.Hinhthucthi = Hinhthucthi;
     }
 
-    public String getMagiangvien() {
-        return Magiangvien;
-    }
-
-    public void setMagiangvien(String Magiangvien) {
-        this.Magiangvien = Magiangvien;
-    }
-
-    public String getTengiangvien() {
-        return Tengiangvien;
-    }
-
-    public void setTengiangvien(String Tengiangvien) {
-        this.Tengiangvien = Tengiangvien;
-    }
-    
-    
 }

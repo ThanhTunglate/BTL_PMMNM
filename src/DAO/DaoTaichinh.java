@@ -32,7 +32,7 @@ public class DaoTaichinh {
         return false;
     }
     
-    public eTaiChinh getListTaiChinh(String Masv){
+    public eTaiChinh getTaiChinh(String Masv){
         conn=ConnecttoSql.getconConnection();
         ArrayList<eTaiChinh> list = new ArrayList<>();
         String sql="SELECT * FROM TaiChinh";

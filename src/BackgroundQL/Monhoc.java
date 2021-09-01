@@ -37,7 +37,7 @@ public class Monhoc extends javax.swing.JPanel {
         if(txtMaMon.getText()!="" || txtTenmon.getText()!="" || txtSotin.getText()!=""){
             mh.setMamon(txtMaMon.getText());
             mh.setTenmon(txtTenmon.getText());
-            mh.setSotinchi(txtSotin.getText());
+            mh.setSotinchi(Integer.parseInt(txtSotin.getText()));
             int index= jComboBox1.getSelectedIndex();
             mh.setHinhthucthi(jComboBox1.getItemAt(index));
             if(csdl.ThemMH(mh)){
@@ -59,7 +59,7 @@ public class Monhoc extends javax.swing.JPanel {
         if(txtMaMon.getText()!="" || txtTenmon.getText()!="" || txtSotin.getText()!=""){
             mhn.setMamon(txtMaMon.getText());
             mhn.setTenmon(txtTenmon.getText());
-            mhn.setSotinchi(txtSotin.getText());
+            mhn.setSotinchi(Integer.parseInt(txtSotin.getText()));
             int index= jComboBox1.getSelectedIndex();
             mhn.setHinhthucthi(jComboBox1.getItemAt(index));
             if(csdl.SuaMH(mh, mhn)){

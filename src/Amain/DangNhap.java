@@ -57,6 +57,7 @@ public class DangNhap extends javax.swing.JFrame {
                         {
                             nameLogin = userName;
                             BgrSV kh=new BgrSV();
+                            kh.Masv=tk.getTaikhoan();
                             kh.setVisible(true);
                             this.dispose();
                         }
