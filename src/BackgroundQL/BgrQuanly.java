@@ -334,7 +334,7 @@ public class BgrQuanly extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btnDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiemActionPerformed
-        System.err.println(cc);
+
         if(d==null){
             d= new Diem();
             tabbed.addTab("Quản lý điểm", d);

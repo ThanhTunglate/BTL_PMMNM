@@ -29,6 +29,7 @@ public class QlyDiem extends javax.swing.JFrame {
         txtMaMon.setText(MaMH);
         txtTenMon.setText(TenMH);
         txtSoSinhVien.setText(SoSV);
+        HienThi();
    }
     ArrayList<eDiem> list;
     DaoDiem dao = new DaoDiem();

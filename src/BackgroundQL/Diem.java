@@ -133,10 +133,10 @@ public class Diem extends javax.swing.JPanel {
         int index = tableMonHoc.getSelectedRow();
         if(index >=0){
             QlyDiem ql= new QlyDiem();
-            ql.setVisible(true);
             ql.MaMH = list.get(index).getMaHP();
             ql.TenMH = list.get(index).getTenHP();
             ql.SoSV = list.get(index).getSoSV();
+            ql.setVisible(true);
         }
         else{
             JOptionPane.showMessageDialog(this, "Vui lòng chọn chọn môn học từ danh sách", "Chú ý", JOptionPane.WARNING_MESSAGE);
