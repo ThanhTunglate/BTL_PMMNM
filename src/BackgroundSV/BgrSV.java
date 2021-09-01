@@ -329,6 +329,7 @@ public class BgrSV extends javax.swing.JFrame {
 
     private void btnHocphanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHocphanActionPerformed
         DangkiHp hp= new DangkiHp();
+        hp.Masv = Masv;
         hp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnHocphanActionPerformed

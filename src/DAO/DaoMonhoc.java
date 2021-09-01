@@ -45,7 +45,7 @@ public class DaoMonhoc {
                 eMonHoc tk = new eMonHoc();
                 tk.setMamon(rs.getString("MaMH"));
                 tk.setTenmon(rs.getString("TenMH"));
-                tk.setSotinchi(Integer.parseInt(rs.getString("SoTC")));
+                tk.setSotinchi(rs.getInt("SoTC"));
                 tk.setHinhthucthi(rs.getString("HinhThucThi"));
                 list.add(tk);
             }
@@ -95,7 +95,7 @@ public class DaoMonhoc {
                 eMonHoc tk = new eMonHoc();
                 tk.setMamon(rs.getString("MaMH"));
                 tk.setTenmon(rs.getString("TenMH"));
-                tk.setSotinchi(Integer.parseInt(rs.getString("SoTC")));
+                tk.setSotinchi(rs.getInt("SoTC"));
                 tk.setHinhthucthi(rs.getString("HinhThucThi"));
                 return tk;      
             }
