@@ -104,7 +104,7 @@ public class DaoDiem {
     public void updateDiem4(float DiemTX1, float DiemTX2, float DiemHS2, float DiemThi, String MaSV, String MaHP){
         try {
             String sql ="UPDATE DangKi SET DiemTX1 = "+DiemTX1+", DiemTX2 ="+DiemTX2+", DiemHS2 = "+DiemHS2+", DiemThi = "+DiemThi+", DiemTB = (((DiemTX1 + DiemTX2 + DiemHS2 *2) / 4 ) + DiemThi*2) / 3"
-                    + "WHERE  MaSV ='"+MaSV+"' AND MAMH = '"+MaHP+"' ";
+                    + "WHERE  MaSV ='"+MaSV+"' AND MaHP = '"+MaHP+"' ";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.executeUpdate();
         } catch (SQLException ex) {
@@ -114,7 +114,7 @@ public class DaoDiem {
      public void updateDiem3(float DiemTX1, float DiemTX2, float DiemThi, String MaSV, String MaHP){
         try {
             String sql ="UPDATE DangKi SET DiemTX1 = "+DiemTX1+", DiemTX2 ="+DiemTX2+", DiemThi = "+DiemThi+", DiemTB = (((DiemTX1 + DiemTX2) / 2 ) + DiemThi*2) / 3"
-                    + "WHERE  MaSV ='"+MaSV+"' AND MAMH = '"+MaHP+"'";
+                    + "WHERE  MaSV ='"+MaSV+"' AND MaHP = '"+MaHP+"'";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.executeUpdate();
         } catch (SQLException ex) {
