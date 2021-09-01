@@ -12,13 +12,13 @@ package Emtity;
 public class eMonHoc {
     private String Mamon;
     private String Tenmon;
-    private int Sotinchi;
+    private String Sotinchi;
     private String Hinhthucthi;
 
     public eMonHoc() {
     }
 
-    public eMonHoc(String Mamon, String Tenmon, int Sotinchi, String Hinhthucthi) {
+    public eMonHoc(String Mamon, String Tenmon, String Sotinchi, String Hinhthucthi) {
         this.Mamon = Mamon;
         this.Tenmon = Tenmon;
         this.Sotinchi = Sotinchi;
@@ -41,11 +41,11 @@ public class eMonHoc {
         this.Tenmon = Tenmon;
     }
 
-    public int getSotinchi() {
+    public String getSotinchi() {
         return Sotinchi;
     }
 
-    public void setSotinchi(int Sotinchi) {
+    public void setSotinchi(String Sotinchi) {
         this.Sotinchi = Sotinchi;
     }
 
@@ -56,5 +56,7 @@ public class eMonHoc {
     public void setHinhthucthi(String Hinhthucthi) {
         this.Hinhthucthi = Hinhthucthi;
     }
+
+    
 
 }

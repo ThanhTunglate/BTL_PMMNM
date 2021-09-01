@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class customMonHoc extends AbstractTableModel{
     private String name[]={"STT","Mã môn","Tên môn", "Số tín chỉ", "Hình thức thi"};
-    private Class classes[]={int.class,String.class,String.class,int.class,String.class};
+    private Class classes[]={int.class,String.class,String.class,String.class,String.class};
     ArrayList<eMonHoc> ps= new ArrayList<eMonHoc>();
     public customMonHoc(ArrayList<eMonHoc> p) {
         this.ps=p;

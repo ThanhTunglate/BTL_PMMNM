@@ -42,7 +42,7 @@ public class customTaiChinh extends AbstractTableModel{
             case 1: return ps.get(rowIndex).getMamon();
             case 2: return ps.get(rowIndex).getTenmon(); 
             case 3: return ps.get(rowIndex).getSotinchi();
-            case 4: return (ps.get(rowIndex).getSotinchi())*300000;  
+            case 4: return Integer.parseInt(ps.get(rowIndex).getSotinchi())*300000;  
             default: return null;
         }
     }

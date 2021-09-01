@@ -13,17 +13,17 @@ public class eDangkimon {
     private String Masinhvien;
     private String Mamon;
     private String Tenmon;
-    private int Sotinchi;
+    private String Sotinchi;
     private String Hinhthucthi;
     private String Magiangvien;
     private String TenGiangvien;
-    private int SoluongSV;
+    private String SoluongSV;
     private String Trangthai;
 
     public eDangkimon() {
     }
 
-    public eDangkimon(String Masinhvien, String Mamon, String Tenmon, int Sotinchi, String Hinhthucthi, String Magiangvien, String TenGiangvien, int SoluongSV, String Trangthai) {
+    public eDangkimon(String Masinhvien, String Mamon, String Tenmon, String Sotinchi, String Hinhthucthi, String Magiangvien, String TenGiangvien, String SoluongSV, String Trangthai) {
         this.Masinhvien = Masinhvien;
         this.Mamon = Mamon;
         this.Tenmon = Tenmon;
@@ -59,11 +59,11 @@ public class eDangkimon {
         this.Tenmon = Tenmon;
     }
 
-    public int getSotinchi() {
+    public String getSotinchi() {
         return Sotinchi;
     }
 
-    public void setSotinchi(int Sotinchi) {
+    public void setSotinchi(String Sotinchi) {
         this.Sotinchi = Sotinchi;
     }
 
@@ -91,11 +91,11 @@ public class eDangkimon {
         this.TenGiangvien = TenGiangvien;
     }
 
-    public int getSoluongSV() {
+    public String getSoluongSV() {
         return SoluongSV;
     }
 
-    public void setSoluongSV(int SoluongSV) {
+    public void setSoluongSV(String SoluongSV) {
         this.SoluongSV = SoluongSV;
     }
 
@@ -106,6 +106,6 @@ public class eDangkimon {
     public void setTrangthai(String Trangthai) {
         this.Trangthai = Trangthai;
     }
-    
+
     
 }

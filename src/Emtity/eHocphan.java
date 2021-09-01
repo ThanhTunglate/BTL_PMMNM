@@ -12,12 +12,12 @@ package Emtity;
 public class eHocphan {
     private String Mamon;
     private String MaGV;
-    private int SoSV;
+    private String SoSV;
 
     public eHocphan() {
     }
-    
-    public eHocphan(String Mamon, String MaGV, int SoSV) {
+
+    public eHocphan(String Mamon, String MaGV, String SoSV) {
         this.Mamon = Mamon;
         this.MaGV = MaGV;
         this.SoSV = SoSV;
@@ -39,11 +39,11 @@ public class eHocphan {
         this.MaGV = MaGV;
     }
 
-    public int getSoSV() {
+    public String getSoSV() {
         return SoSV;
     }
 
-    public void setSoSV(int SoSV) {
+    public void setSoSV(String SoSV) {
         this.SoSV = SoSV;
     }
     

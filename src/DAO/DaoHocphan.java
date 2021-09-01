@@ -44,7 +44,7 @@ public class DaoHocphan {
                 eHocphan tk = new eHocphan();
                 tk.setMamon(rs.getString("MaHP"));
                 tk.setMaGV(rs.getString("MaGV"));
-                tk.setSoSV(Integer.parseInt(rs.getString("SoluongSV")));
+                tk.setSoSV(rs.getString("SoluongSV"));
                 list.add(tk);
             }
         } catch (Exception e) {
@@ -92,7 +92,7 @@ public class DaoHocphan {
                 eHocphan tk = new eHocphan();
                 tk.setMamon(rs.getString("MaHP"));
                 tk.setMaGV(rs.getString("MaGV"));
-                tk.setSoSV(Integer.parseInt(rs.getString("SoluongSV")));
+                tk.setSoSV(rs.getString("SoluongSV"));
                 return tk;      
             }
         } catch (Exception e) {

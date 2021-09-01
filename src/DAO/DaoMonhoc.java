@@ -25,7 +25,7 @@ public class DaoMonhoc {
             PreparedStatement ps= conn.prepareStatement(sql);
             ps.setString(1, tk.getMamon());
             ps.setString(2, tk.getTenmon());
-            ps.setString(3, String.valueOf(tk.getSotinchi()));
+            ps.setString(3, tk.getSotinchi());
             ps.setString(4, tk.getHinhthucthi());
             return ps.executeUpdate() >0;
         } catch (Exception e) {
@@ -45,7 +45,7 @@ public class DaoMonhoc {
                 eMonHoc tk = new eMonHoc();
                 tk.setMamon(rs.getString("MaMH"));
                 tk.setTenmon(rs.getString("TenMH"));
-                tk.setSotinchi(rs.getInt("SoTC"));
+                tk.setSotinchi(rs.getString("SoTC"));
                 tk.setHinhthucthi(rs.getString("HinhThucThi"));
                 list.add(tk);
             }
@@ -74,7 +74,7 @@ public class DaoMonhoc {
         try {
             PreparedStatement ps= conn.prepareStatement(sql);
             ps.setString(1, tkMoi.getTenmon());
-            ps.setString(2, String.valueOf(tkMoi.getSotinchi()));
+            ps.setString(2, tkMoi.getSotinchi());
             ps.setString(3, tkMoi.getHinhthucthi());
             ps.setString(4, tkCu.getMamon());    
             return ps.executeUpdate() >0;
@@ -95,7 +95,7 @@ public class DaoMonhoc {
                 eMonHoc tk = new eMonHoc();
                 tk.setMamon(rs.getString("MaMH"));
                 tk.setTenmon(rs.getString("TenMH"));
-                tk.setSotinchi(rs.getInt("SoTC"));
+                tk.setSotinchi(rs.getString("SoTC"));
                 tk.setHinhthucthi(rs.getString("HinhThucThi"));
                 return tk;      
             }

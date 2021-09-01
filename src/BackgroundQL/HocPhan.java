@@ -73,7 +73,7 @@ public class HocPhan extends javax.swing.JPanel {
             eHocphan hp= new eHocphan();
             hp.setMamon(String.valueOf(cbbMon.getSelectedItem())+"-"+txtMaHP.getText());
             hp.setMaGV(String.valueOf(cbbGiangvien.getSelectedItem()));
-            hp.setSoSV(Integer.parseInt(txtSosv.getText()));
+            hp.setSoSV(txtSosv.getText());
             if(head.ThemHP(hp)){
                 list.add(hp);
                 HienThi();
@@ -107,7 +107,7 @@ public class HocPhan extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn học phần cần sửa", "", JOptionPane.WARNING_MESSAGE);
         else{
             eHocphan hp= new eHocphan(String.valueOf(cbbMon.getSelectedItem())+"-"+txtMaHP.getText(), 
-                    String.valueOf(cbbGiangvien.getSelectedItem()), Integer.parseInt(txtSosv.getText()));
+                    String.valueOf(cbbGiangvien.getSelectedItem()), txtSosv.getText());
             int response =JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn sửa?","",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
             if(response == JOptionPane.YES_OPTION){
                 if(head.SuaMH(list.get(n), hp)){

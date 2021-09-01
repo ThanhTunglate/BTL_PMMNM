@@ -32,7 +32,7 @@ public class DaoDangki {
             eMonHoc tk1= new eMonHoc();
             while(rs1.next()){
                 tk1.setTenmon(rs1.getString("TenMH"));
-                tk1.setSotinchi(rs1.getInt("SoTC"));
+                tk1.setSotinchi(rs1.getString("SoTC"));
                 tk1.setHinhthucthi(rs1.getString("HinhThucThi"));
                 mh.add(tk1);
             }
@@ -43,7 +43,7 @@ public class DaoDangki {
                 eHocphan tk2 = new eHocphan();
                 tk2.setMaGV(rs2.getString("MaGV"));
                 tk2.setMamon(rs2.getString("MaHP"));
-                tk2.setSoSV(rs2.getInt("SoluongSV"));
+                tk2.setSoSV(rs2.getString("SoluongSV"));
                 hp.add(tk2);
             }
             for(int i=0; i < hp.size(); i++ ){

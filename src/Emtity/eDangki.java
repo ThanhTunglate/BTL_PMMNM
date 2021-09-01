@@ -12,15 +12,15 @@ package Emtity;
 public class eDangki {
     private String MaHP;
     private String TenHP;
-    private int Sotinchi;
+    private String Sotinchi;
     private String Hinhthucthi;
     private String Magiangvien;
-    private int SoSV;
+    private String SoSV;
 
     public eDangki() {
     }
 
-    public eDangki(String MaHP, String TenHP, int Sotinchi, String Hinhthucthi, String Magiangvien, int SoSV) {
+    public eDangki(String MaHP, String TenHP, String Sotinchi, String Hinhthucthi, String Magiangvien, String SoSV) {
         this.MaHP = MaHP;
         this.TenHP = TenHP;
         this.Sotinchi = Sotinchi;
@@ -45,11 +45,11 @@ public class eDangki {
         this.TenHP = TenHP;
     }
 
-    public int getSotinchi() {
+    public String getSotinchi() {
         return Sotinchi;
     }
 
-    public void setSotinchi(int Sotinchi) {
+    public void setSotinchi(String Sotinchi) {
         this.Sotinchi = Sotinchi;
     }
 
@@ -69,13 +69,13 @@ public class eDangki {
         this.Magiangvien = Magiangvien;
     }
 
-    public int getSoSV() {
+    public String getSoSV() {
         return SoSV;
     }
 
-    public void setSoSV(int SoSV) {
+    public void setSoSV(String SoSV) {
         this.SoSV = SoSV;
     }
-    
+
     
 }
