@@ -139,4 +139,15 @@ public class DaoDangki {
         return false;
     }
     
+    public boolean delete(String Masv, String Mamh){
+        conn=ConnecttoSql.getconConnection();
+        String sql="DELETE FROM DangKi WHERE MaSV='"+Masv+"' and MaHP='"+Mamh+"'";
+        try {
+            PreparedStatement ps= conn.prepareStatement(sql);
+            return ps.executeUpdate() >0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

@@ -60,10 +60,15 @@ public class Taichinh extends javax.swing.JPanel {
         }
         else{
             double a= csdl.getTaiChinh(txtMasv.getText()).getSotiendu();
-            if(csdl.NapTien(txtMasv.getText(), a+Double.parseDouble(txtNaptien.getText()))){
-                JOptionPane.showMessageDialog(this,"Nạp thành công!","",JOptionPane.INFORMATION_MESSAGE);
-                Kiemtra();
+            if(Double.parseDouble(txtNaptien.getText())>100000){
+                if(csdl.NapTien(txtMasv.getText(), a+Double.parseDouble(txtNaptien.getText()))){
+                    JOptionPane.showMessageDialog(this,"Nạp thành công!","",JOptionPane.INFORMATION_MESSAGE);
+                    Kiemtra();
+                }
             }
+            else
+                JOptionPane.showMessageDialog(this,"Số tiền nạp phải lớn hơn 100.000VND!","",JOptionPane.WARNING_MESSAGE);
+            
         }
     }
     /**

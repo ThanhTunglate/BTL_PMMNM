@@ -46,37 +46,59 @@ public class DangkiHp extends javax.swing.JFrame {
      
      public void Dangki(){
          int i = table1.getSelectedRow();
-         eDiem tk= new eDiem();
-         if(list.get(i).getSotinchi()=="3")
-         {
-            tk.setMaHP(list.get(i).getMaHP());
-            tk.setMasinhvien(Masv);
-            tk.setDiemTB(0);
-            tk.setDiemtx1(0);
-            tk.setDiemtx2(0);
-            tk.setDiemhs2(-1);
-            tk.setDiemthi(0);
-            tk.setTrangThai("Chưa nộp học phí");
+         if(i<0){
+             JOptionPane.showMessageDialog(this, "Vui lòng chọn môn học muốn đăng kí!", "", JOptionPane.WARNING_MESSAGE);
          }
          else{
-            tk.setMaHP(list.get(i).getMaHP());
-            tk.setMasinhvien(Masv);
-            tk.setDiemTB(0);
-            tk.setDiemtx1(0);
-            tk.setDiemtx2(0);
-            tk.setDiemhs2(0);
-            tk.setDiemthi(0);
-            tk.setTrangThai("Chưa nộp học phí");
-         }
-         if(csdl.ThemDangki(tk)){
-             Hienthi();
-             double a=tc.getTaiChinh(Masv).getSotienno();
-             tc.No(Masv, (Double.parseDouble(list.get(i).getSotinchi())*300000)+a);
-             JOptionPane.showMessageDialog(this, "Thêm thành công!", "", JOptionPane.WARNING_MESSAGE);
-         }
-         else
-             JOptionPane.showMessageDialog(this, "Bạn đã đăng kí học phần này rồi!", "", JOptionPane.WARNING_MESSAGE);
+            eDiem tk= new eDiem();
+            if(list.get(i).getSotinchi()=="3")
+            {
+               tk.setMaHP(list.get(i).getMaHP());
+               tk.setMasinhvien(Masv);
+               tk.setDiemTB(0);
+               tk.setDiemtx1(0);
+               tk.setDiemtx2(0);
+               tk.setDiemhs2(-1);
+               tk.setDiemthi(0);
+               tk.setTrangThai("Chưa nộp học phí");
+            }
+            else{
+               tk.setMaHP(list.get(i).getMaHP());
+               tk.setMasinhvien(Masv);
+               tk.setDiemTB(0);
+               tk.setDiemtx1(0);
+               tk.setDiemtx2(0);
+               tk.setDiemhs2(0);
+               tk.setDiemthi(0);
+               tk.setTrangThai("Chưa nộp học phí");
+            }
+            if(csdl.ThemDangki(tk)){
+                Hienthi();
+                double a=tc.getTaiChinh(Masv).getSotienno();
+                tc.No(Masv, (Double.parseDouble(list.get(i).getSotinchi())*300000)+a);
+                JOptionPane.showMessageDialog(this, "Thêm thành công!", "", JOptionPane.WARNING_MESSAGE);
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Bạn đã đăng kí học phần này rồi!", "", JOptionPane.WARNING_MESSAGE);
+
+            }
          
+     }
+     
+     public void Huy(){
+         int i = table2.getSelectedRow();
+         if(i<0){
+             JOptionPane.showMessageDialog(this, "Vui lòng chọn môn học muốn hủy!", "", JOptionPane.WARNING_MESSAGE);
+         }
+         else{
+             String MaHP= list1.get(i).getMaHP();
+             if(csdl.delete(Masv, MaHP)){
+                 JOptionPane.showMessageDialog(this, "Hủy thành công!", "", JOptionPane.INFORMATION_MESSAGE);
+                 Hienthi();
+             }
+             else
+                 JOptionPane.showMessageDialog(this, "Xóa thất bại!", "", JOptionPane.WARNING_MESSAGE);
+         }
      }
      
     /**

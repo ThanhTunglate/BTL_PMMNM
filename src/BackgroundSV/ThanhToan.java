@@ -49,24 +49,27 @@ public class ThanhToan extends javax.swing.JFrame {
     
     public void Kiemtra(){
         double Tong=0;
-        int i[]= tableThanhToan.getSelectedRows();
-        for (int j : i) {
-            Tong=+(Double.parseDouble(list.get(j).getSotinchi())*300000);
-        }
+        int i= tableThanhToan.getSelectedRow();
+            Tong=+(Double.parseDouble(list.get(i).getSotinchi())*300000);
         txtTong.setText(String.valueOf(Tong));
     }
     
     public void ThanhToan(){
         Kiemtra();
-        if(csdl.Thanhtoan(csdl.getTaiChinh(Masv).getSotiendu()-Double.parseDouble(txtTong.getText()), Masv,csdl.getTaiChinh(Masv).getSotienno()-Double.parseDouble(txtTong.getText()))){
-            Setting();
-            int i[]= tableThanhToan.getSelectedRows();
-            for(int item : i){
-                csdl.Update(Masv, list.get(item).getMaHP());
-            }
+        if(csdl.getTaiChinh(Masv).getSotienno()<csdl.getTaiChinh(Masv).getSotiendu()){
+            JOptionPane.showMessageDialog(this, "Tài khoản không đủ tiền!", "", JOptionPane.ERROR_MESSAGE); 
         }
-        else
-            JOptionPane.showMessageDialog(this, "Thanh toán thất bại!", "", JOptionPane.ERROR_MESSAGE); 
+        else{
+            if(csdl.Thanhtoan(csdl.getTaiChinh(Masv).getSotiendu()-Double.parseDouble(txtTong.getText()), Masv,csdl.getTaiChinh(Masv).getSotienno()-Double.parseDouble(txtTong.getText()))){
+                Setting();
+                int i= tableThanhToan.getSelectedRow();
+                    csdl.Update(Masv, list.get(i).getMaHP());
+                    HienThi();
+                JOptionPane.showMessageDialog(this, "Thanh toán thành công!", "", JOptionPane.INFORMATION_MESSAGE); 
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Thanh toán thất bại!", "", JOptionPane.ERROR_MESSAGE); 
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -161,9 +164,8 @@ public class ThanhToan extends javax.swing.JFrame {
             }
         ));
         tableThanhToan.setGridColor(new java.awt.Color(0, 102, 102));
-        tableThanhToan.setSelectionBackground(new java.awt.Color(0, 102, 102));
+        tableThanhToan.setSelectionBackground(new java.awt.Color(255, 204, 204));
         tableThanhToan.setSelectionForeground(new java.awt.Color(0, 102, 102));
-        tableThanhToan.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         jScrollPane1.setViewportView(tableThanhToan);
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
