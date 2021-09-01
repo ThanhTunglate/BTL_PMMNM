@@ -33,7 +33,7 @@ public class eKQHT {
     }
 
     public float tinhDiemTK() {
-        return (tinhDiemTB() + DiemThi * 2) / 3;
+        return (DiemTB + DiemThi * 2) / 3;
     }
 
     public String XepLoai(float diemtk) {
