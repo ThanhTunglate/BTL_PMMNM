@@ -98,7 +98,7 @@ public class DaoTaichinh {
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
                    item.setTenHP(rs.getString("TenMH"));
-                   item.setSotinchi("SoTC");
+                   item.setSotinchi(rs.getString("SoTC"));
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(DaoDiem.class.getName()).log(Level.SEVERE, null, ex);
