@@ -33,7 +33,7 @@ public class DangkiHp extends javax.swing.JFrame {
      public String Masv;
      
      public void Hienthi(){
-         list= csdl.getListDK();
+         list= csdl.getMonHoc();
          table1.setModel(new customDangki(list));
      }
     /**

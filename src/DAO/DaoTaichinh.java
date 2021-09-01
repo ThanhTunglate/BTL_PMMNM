@@ -23,8 +23,7 @@ public class DaoTaichinh {
     private Connection conn;
     public boolean NapTien(String Masv, double tiennap){
         conn = ConnecttoSql.getconConnection();
-        String sql="UPDATE TaiChinh SET SoDuKhaDung=? WHERE MaSV=?"
-                + "VALUES(?,?,?)";
+        String sql="UPDATE TaiChinh SET SoDuKhaDung=? WHERE MaSV=?";
         try {
             PreparedStatement ps= conn.prepareStatement(sql);
             ps.setString(1, String.valueOf(tiennap));
@@ -36,14 +35,14 @@ public class DaoTaichinh {
         return false;
     }
     
-    public boolean Thanhtoan(double tienn){
+    public boolean Thanhtoan(double Somoi, String Masv, double Sono){
         conn = ConnecttoSql.getconConnection();
-        String sql="UPDATE TaiChinh SET SoDuKhaDung=? WHERE MaSV=?"
-                + "VALUES(?,?,?)";
+        String sql="UPDATE TaiChinh SET SoDuKhaDung=?, SoTienConNo= ? WHERE MaSV=?";
         try {
             PreparedStatement ps= conn.prepareStatement(sql);
-            ps.setString(1, String.valueOf(tien));
-            ps.setString(2, Masv);
+            ps.setDouble(1, Somoi);
+            ps.setDouble(2, Sono);
+            ps.setString(3, Masv);
             return ps.executeUpdate() >0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -106,5 +105,20 @@ public class DaoTaichinh {
             }
         }
         return list;
+    }
+    
+    public boolean Update(String Masv, String MaHP){
+        conn = ConnecttoSql.getconConnection();
+        String sql="UPDATE DangKi SET TrangThai=? WHERE MaSV=? and MaHP=?";
+        try {
+            PreparedStatement ps= conn.prepareStatement(sql);
+            ps.setString(1, "Đã nộp học phí");
+            ps.setString(2, Masv);
+            ps.setString(3, MaHP);
+            return ps.executeUpdate() >0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

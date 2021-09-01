@@ -57,7 +57,15 @@ public class ThanhToan extends javax.swing.JFrame {
     
     public void ThanhToan(){
         Kiemtra();
-        
+        if(csdl.Thanhtoan(csdl.getTaiChinh(Masv).getSotiendu()-Double.valueOf(txtTong.getText()), Masv,csdl.getTaiChinh(Masv).getSotienno()-Double.valueOf(txtTong.getText()))){
+            Setting();
+            int i[]= tableThanhToan.getSelectedRows();
+            for(int item : i){
+                csdl.Update(Masv, list.get(item).getMaHP());
+            }
+        }
+        else
+            JOptionPane.showMessageDialog(this, "Thanh toán thất bại!", "", JOptionPane.ERROR_MESSAGE); 
     }
     /**
      * This method is called from within the constructor to initialize the form.
