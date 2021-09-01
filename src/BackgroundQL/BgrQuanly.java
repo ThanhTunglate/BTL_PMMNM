@@ -20,6 +20,7 @@ public class BgrQuanly extends javax.swing.JFrame {
     Giangvien GV;
     Diem d;
     Taikhoan tk;
+    HocPhan hp;
     /**
      * Creates new form BgrQuanly
      */
@@ -51,7 +52,7 @@ public class BgrQuanly extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         btnDiem = new javax.swing.JButton();
         btnTaikhoan = new javax.swing.JButton();
-        btnThongtin = new javax.swing.JButton();
+        btnHocphan = new javax.swing.JButton();
         tabbed = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -166,14 +167,19 @@ public class BgrQuanly extends javax.swing.JFrame {
         });
         jToolBar1.add(btnTaikhoan);
 
-        btnThongtin.setBackground(new java.awt.Color(0, 102, 102));
-        btnThongtin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Get-Info-icon.png"))); // NOI18N
-        btnThongtin.setText("Thông tin");
-        btnThongtin.setFocusable(false);
-        btnThongtin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnThongtin.setMargin(new java.awt.Insets(2, 30, 2, 30));
-        btnThongtin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btnThongtin);
+        btnHocphan.setBackground(new java.awt.Color(0, 102, 102));
+        btnHocphan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Get-Info-icon.png"))); // NOI18N
+        btnHocphan.setText("Học phần");
+        btnHocphan.setFocusable(false);
+        btnHocphan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHocphan.setMargin(new java.awt.Insets(2, 30, 2, 30));
+        btnHocphan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHocphan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHocphanActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnHocphan);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -365,6 +371,24 @@ public class BgrQuanly extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_mnitemDangxuatActionPerformed
 
+    private void btnHocphanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHocphanActionPerformed
+        if(index==0)
+            JOptionPane.showMessageDialog(this, "Tài khoản không có quyền truy cập", "!", JOptionPane.ERROR_MESSAGE);
+        else 
+        {
+            if(hp==null){
+                hp= new HocPhan();
+                tabbed.addTab("Quản học phần", hp);
+                tabbed.setSelectedComponent(hp);
+            }
+            else
+            {
+                tabbed.remove(hp);
+                hp=null;
+            }
+        }
+    }//GEN-LAST:event_btnHocphanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -402,12 +426,12 @@ public class BgrQuanly extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDiem;
+    private javax.swing.JButton btnHocphan;
     private javax.swing.JButton btnLophoc;
     private javax.swing.JButton btnMonhoc;
     private javax.swing.JButton btnSinhvien;
     private javax.swing.JButton btnTaichinh;
     private javax.swing.JButton btnTaikhoan;
-    private javax.swing.JButton btnThongtin;
     private javax.swing.JButton jButton5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
