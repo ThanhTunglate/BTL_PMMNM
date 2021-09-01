@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class customThanhtoan extends AbstractTableModel{
     private String name[]={"STT","Mã môn","Tên môn", "Số tín chỉ", "Số tiền"};
-    private Class classes[]={int.class,String.class,String.class,String.class,Double.class};
+    private Class classes[]={int.class,String.class,String.class,String.class,double.class};
     ArrayList<eDangki> ps= new ArrayList<eDangki>();
     public customThanhtoan(ArrayList<eDangki> p) {
         this.ps=p;

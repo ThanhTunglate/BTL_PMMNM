@@ -46,11 +46,12 @@ public class ThanhToan extends javax.swing.JFrame {
         list= csdl.getMonHoc(Masv);
         tableThanhToan.setModel(new customThanhtoan(list));
     }
+    
     public void Kiemtra(){
-        Double Tong=null;
+        double Tong=0;
         int i[]= tableThanhToan.getSelectedRows();
         for (int j : i) {
-            Tong=+(Double.valueOf(list.get(j).getSotinchi())*300000);
+            Tong=+(Double.parseDouble(list.get(j).getSotinchi())*300000);
         }
         txtTong.setText(String.valueOf(Tong));
     }
