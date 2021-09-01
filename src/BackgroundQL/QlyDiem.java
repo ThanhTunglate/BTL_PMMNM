@@ -5,7 +5,8 @@
  */
 package BackgroundQL;
 
-import Customtable.customQuanLyDiem;
+import Customtable.customQuanLyDiem3;
+import Customtable.customQuanLyDiem4;
 import DAO.DaoDiem;
 import Emtity.eDiem;
 import java.util.ArrayList;
@@ -22,8 +23,8 @@ public class QlyDiem extends javax.swing.JFrame {
      */
     public String MaMH;
     public String TenMH;
-    public String SoTC;
-    public QlyDiem(String MaMH, String TenMH, String SoTC) {
+    public int SoTC;
+    public QlyDiem(String MaMH, String TenMH, int SoTC) {
         initComponents();
         setLocationRelativeTo(null);
         this.MaMH = MaMH;
@@ -31,7 +32,7 @@ public class QlyDiem extends javax.swing.JFrame {
         this.SoTC = SoTC;
         txtMaMon.setText(MaMH);
         txtTenMon.setText(TenMH);
-        txtSoSinhVien.setText(SoTC);
+        txtSoSinhVien.setText(String.valueOf(SoTC));
         HienThi();
    }
     ArrayList<eDiem> list;
@@ -41,8 +42,14 @@ public class QlyDiem extends javax.swing.JFrame {
         
     }
     public void HienThi(){
-        list = dao.getDiem(txtMaMon.getText());
-        tableQLDiem.setModel(new customQuanLyDiem(list));
+        if(SoTC == 4){
+            list = dao.getDiem4(txtMaMon.getText());
+            tableQLDiem.setModel(new customQuanLyDiem4(list));
+        }else{
+            list = dao.getDiem3(txtMaMon.getText());
+            tableQLDiem.setModel(new customQuanLyDiem3(list));
+        }
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -130,6 +137,12 @@ public class QlyDiem extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 102, 102));
         jLabel4.setText("Số sinh viên");
+
+        txtSoSinhVien.setEnabled(false);
+
+        txtTenMon.setEnabled(false);
+
+        txtMaMon.setEnabled(false);
 
         tableQLDiem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -312,6 +325,8 @@ public class QlyDiem extends javax.swing.JFrame {
                         .addGap(43, 43, 43))))
         );
 
+        jLabel4.getAccessibleContext().setAccessibleName("Số tín chỉ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -336,10 +351,10 @@ public class QlyDiem extends javax.swing.JFrame {
             eDiem diem = list.get(index);
         txtSTT.setText(String.valueOf(index));
         txtMaSV.setText(diem.getMasinhvien());
-        txtDiemTX1.setText(diem.getDiemtx1());
-        txtDiemTX2.setText(diem.getDiemtx2());
-        txtDiemGiuaKI.setText(diem.getDiemhs2());
-        txtDiemThi.setText(diem.getDiemthi());
+        txtDiemTX1.setText(String.valueOf(diem.getDiemtx1()));
+        txtDiemTX2.setText(String.valueOf(diem.getDiemtx2()));
+        txtDiemGiuaKI.setText(String.valueOf(diem.getDiemhs2()));
+        txtDiemThi.setText(String.valueOf(diem.getDiemthi()));
         }
     }//GEN-LAST:event_tableQLDiemMouseClicked
 
@@ -349,10 +364,10 @@ public class QlyDiem extends javax.swing.JFrame {
                 int response =JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn xóa?","",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
                 if(response == JOptionPane.YES_OPTION){
                     int index = tableQLDiem.getSelectedRow();
-                    list.get(index).setDiemtx1(txtDiemTX1.getText());
-                    list.get(index).setDiemtx2(txtDiemTX2.getText());
-                    list.get(index).setDiemhs2(txtDiemGiuaKI.getText());
-                    list.get(index).setDiemthi(txtDiemThi.getText());
+                    list.get(index).setDiemtx1(Float.parseFloat(txtDiemTX1.getText()));
+                    list.get(index).setDiemtx2(Float.parseFloat(txtDiemTX2.getText()));
+                    list.get(index).setDiemhs2(Float.parseFloat(txtDiemGiuaKI.getText()));
+                    list.get(index).setDiemthi(Float.parseFloat(txtDiemThi.getText()));
                     HienThi();
                 }
             }

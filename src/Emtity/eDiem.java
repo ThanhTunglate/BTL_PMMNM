@@ -10,52 +10,42 @@ package Emtity;
  * @author thanh
  */
 public class eDiem {
+
     private String Masinhvien;
     private String MaHP;
-    private String Diemtx1;
-    private String Diemtx2;
-    private String Diemhs2;
-    private String Diemthi;
-    private String DiemTB;
+    private float Diemtx1;
+    private float Diemtx2;
+    private float Diemhs2;
+    private float Diemthi;
+    private float DiemTB;
     private String TrangThai;
+    
     public eDiem() {
     }
-
-    public eDiem(String Masinhvien, String MaHP, String Diemtx1, String Diemtx2, String Diemhs2, String Diemthi, String DiemTB, String TrangThai) {
-        this.Masinhvien = Masinhvien;
-        this.MaHP = MaHP;
-        this.Diemtx1 = Diemtx1;
-        this.Diemtx2 = Diemtx2;
-        this.Diemhs2 = Diemhs2;
-        this.Diemthi = Diemthi;
-        this.DiemTB = DiemTB;
-        this.TrangThai = TrangThai;
-    }
-    public float tinhDiemTB(){
-        float Diemtk;
-        if(Diemhs2 != null){
-            Diemtk = (((Float.parseFloat(Diemtx1) + Float.parseFloat(Diemtx2) + Float.parseFloat(Diemhs2) *2) /4) + Float.parseFloat(Diemthi)*2) / 3 ;
-//            DiemTB = String.valueOf(Diemtk);
-        }else{
-            Diemtk = ((Float.parseFloat(Diemtx1) + Float.parseFloat(Diemtx2) /2) + Float.parseFloat(Diemthi)*2) /3;
+    public void tinhDiemTB(){
+        if(Diemhs2 >=0){
+            DiemTB = (((Diemtx1 + Diemtx2 + Diemhs2 *2) / 4 ) + Diemthi*2) / 3;
         }
-        return Diemtk;
+        else{
+            DiemTB = (((Diemtx1 + Diemtx2) / 2 ) + Diemthi*2) / 3;
+        }
     }
-    public String XepLoai(float diemtk){
-        if(diemtk >= 8.5){
+    public String XepLoai(float diemtk) {
+        if (diemtk >= 8.5) {
             return "Giỏi";
-        }else{
-            if(diemtk >= 7 && diemtk<8.5){
-            return "Khá";
-            }else{
-                if(diemtk >=4 && diemtk <7){
+        } else {
+            if (diemtk >= 7 && diemtk < 8.5) {
+                return "Khá";
+            } else {
+                if (diemtk >= 4 && diemtk < 7) {
                     return "Trung Bình";
-                }else{
+                } else {
                     return "Yếu";
                 }
             }
         }
     }
+
     public String getMasinhvien() {
         return Masinhvien;
     }
@@ -72,43 +62,43 @@ public class eDiem {
         this.MaHP = MaHP;
     }
 
-    public String getDiemtx1() {
+    public float getDiemtx1() {
         return Diemtx1;
     }
 
-    public void setDiemtx1(String Diemtx1) {
+    public void setDiemtx1(float Diemtx1) {
         this.Diemtx1 = Diemtx1;
     }
 
-    public String getDiemtx2() {
+    public float getDiemtx2() {
         return Diemtx2;
     }
 
-    public void setDiemtx2(String Diemtx2) {
+    public void setDiemtx2(float Diemtx2) {
         this.Diemtx2 = Diemtx2;
     }
 
-    public String getDiemhs2() {
+    public float getDiemhs2() {
         return Diemhs2;
     }
 
-    public void setDiemhs2(String Diemhs2) {
+    public void setDiemhs2(float Diemhs2) {
         this.Diemhs2 = Diemhs2;
     }
 
-    public String getDiemthi() {
+    public float getDiemthi() {
         return Diemthi;
     }
 
-    public void setDiemthi(String Diemthi) {
+    public void setDiemthi(float Diemthi) {
         this.Diemthi = Diemthi;
     }
 
-    public String getDiemTB() {
+    public float getDiemTB() {
         return DiemTB;
     }
 
-    public void setDiemTB(String DiemTB) {
+    public void setDiemTB(float DiemTB) {
         this.DiemTB = DiemTB;
     }
 
@@ -119,5 +109,5 @@ public class eDiem {
     public void setTrangThai(String TrangThai) {
         this.TrangThai = TrangThai;
     }
-    
+
 }

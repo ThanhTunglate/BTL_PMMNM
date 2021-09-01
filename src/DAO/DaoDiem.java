@@ -58,7 +58,7 @@ public class DaoDiem {
         }
         return list;
     }
-    public ArrayList<eDiem> getDiem(String MaHP){
+    public ArrayList<eDiem> getDiem4(String MaHP){
         conn=ConnecttoSql.getconConnection();
         try {
             ArrayList<eDiem> list = new ArrayList<>();
@@ -68,10 +68,31 @@ public class DaoDiem {
             while(rs.next()){
                 eDiem diem = new eDiem();
                 diem.setMasinhvien(rs.getString("MaSV"));
-                diem.setDiemtx1(rs.getString("DiemTX1"));
-                diem.setDiemtx2(rs.getString("DiemTX2"));
-                diem.setDiemhs2(rs.getString("DiemHS2"));
-                diem.setDiemthi(rs.getString("DiemThi"));
+                diem.setDiemtx1(rs.getFloat("DiemTX1"));
+                diem.setDiemtx2(rs.getFloat("DiemTX2"));
+                diem.setDiemhs2(rs.getFloat("DiemHS2"));
+                diem.setDiemthi(rs.getFloat("DiemThi"));
+                list.add(diem);
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoDiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    public ArrayList<eDiem> getDiem3(String MaHP){
+        conn=ConnecttoSql.getconConnection();
+        try {
+            ArrayList<eDiem> list = new ArrayList<>();
+            String sql ="Select * FROM DangKi WHERE MaHP = '"+MaHP+"'";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                eDiem diem = new eDiem();
+                diem.setMasinhvien(rs.getString("MaSV"));
+                diem.setDiemtx1(rs.getFloat("DiemTX1"));
+                diem.setDiemtx2(rs.getFloat("DiemTX2"));
+                diem.setDiemthi(rs.getFloat("DiemThi"));
                 list.add(diem);
             }
             return list;

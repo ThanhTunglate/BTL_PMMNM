@@ -195,12 +195,24 @@
             </Property>
             <Property name="text" type="java.lang.String" value="S&#x1ed1; sinh vi&#xea;n"/>
           </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="S&#x1ed1; t&#xed;n ch&#x1ec9;"/>
+          </AccessibilityProperties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtSoSinhVien">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTenMon">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtMaMon">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
