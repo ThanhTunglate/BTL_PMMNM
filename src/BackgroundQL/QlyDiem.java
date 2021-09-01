@@ -20,12 +20,15 @@ public class QlyDiem extends javax.swing.JFrame {
     /**
      * Creates new form QlyDiem
      */
-//    public String MaMH;
-//    public String TenMH;
-//    public String SoSV;
+    public String MaMH;
+    public String TenMH;
+    public String SoSV;
     public QlyDiem(String MaMH, String TenMH, String SoSV) {
         initComponents();
         setLocationRelativeTo(null);
+        this.MaMH = MaMH;
+        this.TenMH = MaMH;
+        this.SoSV = MaMH;
         txtMaMon.setText(MaMH);
         txtTenMon.setText(TenMH);
         txtSoSinhVien.setText(SoSV);
@@ -33,6 +36,10 @@ public class QlyDiem extends javax.swing.JFrame {
    }
     ArrayList<eDiem> list;
     DaoDiem dao = new DaoDiem();
+
+    private QlyDiem() {
+        
+    }
     public void HienThi(){
         list = dao.getDiem(txtMaMon.getText());
         tableQLDiem.setModel(new customQuanLyDiem(list));
@@ -387,8 +394,9 @@ public class QlyDiem extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                
+                new QlyDiem().setVisible(true);
             }
         });
     }
