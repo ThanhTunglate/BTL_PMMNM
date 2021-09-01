@@ -26,7 +26,7 @@ public class DaoMonhoc {
             ps.setString(1, tk.getMamon());
             ps.setString(2, tk.getTenmon());
             ps.setString(3, String.valueOf(tk.getSotinchi()));
-            ps.setString(3, tk.getHinhthucthi());
+            ps.setString(4, tk.getHinhthucthi());
             return ps.executeUpdate() >0;
         } catch (Exception e) {
             e.printStackTrace();

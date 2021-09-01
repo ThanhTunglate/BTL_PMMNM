@@ -27,7 +27,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane2" alignment="1" min="-2" pref="741" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jTextField1" min="-2" pref="219" max="-2" attributes="0"/>
+                      <Component id="txtTim" min="-2" pref="219" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnTimKiem" min="-2" pref="112" max="-2" attributes="0"/>
                   </Group>
@@ -69,7 +69,7 @@
                   </Group>
                   <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                       <Component id="btnTimKiem" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtTim" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -145,7 +145,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="txtTim">
     </Component>
     <Component class="javax.swing.JButton" name="btnTimKiem">
       <Properties>
@@ -157,6 +157,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTimKiemActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSua">
       <Properties>
@@ -196,6 +199,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Reset"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnResetActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel2">
       <Properties>
@@ -217,8 +223,8 @@
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtTenmon" pref="296" max="32767" attributes="0"/>
-                      <Component id="txtSotin" max="32767" attributes="0"/>
+                      <Component id="txtMaHP" pref="296" max="32767" attributes="0"/>
+                      <Component id="txtSosv" max="32767" attributes="0"/>
                       <Component id="cbbGiangvien" max="32767" attributes="0"/>
                       <Component id="cbbMon" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -237,12 +243,12 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="txtTenmon" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtMaHP" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="txtSotin" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtSosv" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -299,9 +305,9 @@
             <Property name="text" type="java.lang.String" value="Gi&#x1ea3;ng vi&#xea;n"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtTenmon">
+        <Component class="javax.swing.JTextField" name="txtMaHP">
         </Component>
-        <Component class="javax.swing.JTextField" name="txtSotin">
+        <Component class="javax.swing.JTextField" name="txtSosv">
         </Component>
         <Component class="javax.swing.JComboBox" name="cbbGiangvien">
           <Properties>
@@ -364,6 +370,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableMHMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
