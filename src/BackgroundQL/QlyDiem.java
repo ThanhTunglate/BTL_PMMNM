@@ -136,7 +136,7 @@ public class QlyDiem extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel4.setText("Số sinh viên");
+        jLabel4.setText("Số tín chỉ");
 
         txtSoSinhVien.setEnabled(false);
 
@@ -370,7 +370,7 @@ public class QlyDiem extends javax.swing.JFrame {
 
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
         if(!txtSTT.getText().isEmpty()){
-            if(!txtDiemTX1.getText().isEmpty() && !txtDiemTX2.getText().isEmpty() && !txtDiemGiuaKI.getText().isEmpty() && !txtDiemThi.getText().isEmpty()){
+            if(!txtDiemTX1.getText().isEmpty() && !txtDiemTX2.getText().isEmpty() && !txtDiemThi.getText().isEmpty()){
                 int response =JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn cập nhật?","",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
                 if(response == JOptionPane.YES_OPTION){
                     if(SoTC == 4){
