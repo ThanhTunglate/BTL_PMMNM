@@ -20,10 +20,10 @@ public class QlyDiem extends javax.swing.JFrame {
     /**
      * Creates new form QlyDiem
      */
-    public String MaMH;
-    public String TenMH;
-    public String SoSV;
-    public QlyDiem() {
+//    public String MaMH;
+//    public String TenMH;
+//    public String SoSV;
+    public QlyDiem(String MaMH, String TenMH, String SoSV) {
         initComponents();
         setLocationRelativeTo(null);
         txtMaMon.setText(MaMH);
@@ -34,7 +34,7 @@ public class QlyDiem extends javax.swing.JFrame {
     ArrayList<eDiem> list;
     DaoDiem dao = new DaoDiem();
     public void HienThi(){
-        list = dao.getDiem(MaMH);
+        list = dao.getDiem(txtMaMon.getText());
         tableQLDiem.setModel(new customQuanLyDiem(list));
     }
     /**

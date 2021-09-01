@@ -132,10 +132,10 @@ public class Diem extends javax.swing.JPanel {
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
         int index = tableMonHoc.getSelectedRow();
         if(index >=0){
-            QlyDiem ql= new QlyDiem();
-            ql.MaMH = list.get(index).getMaHP();
-            ql.TenMH = list.get(index).getTenHP();
-            ql.SoSV = list.get(index).getSoSV();
+            QlyDiem ql= new QlyDiem(list.get(index).getMaHP(),list.get(index).getTenHP(),list.get(index).getSoSV());
+//            ql.MaMH = list.get(index).getMaHP();
+//            ql.TenMH = list.get(index).getTenHP();
+//            ql.SoSV = list.get(index).getSoSV();
             ql.setVisible(true);
         }
         else{
