@@ -5,12 +5,53 @@
  */
 package DAO;
 
+import Emtity.eDangki;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author thanh
  */
 public class DaoDiem {
-    public static void main(String[] args) {
-        System.out.println("abc");
+    Connection connect = ConnecttoSql.getconConnection();
+    public ArrayList<eDangki> getMonHocDangKi(){
+        try {
+            ArrayList<eDangki> list = new ArrayList();
+            String sql ="SELECT MaHP, SoLuongSV FROM MonHocDangKi";
+            PreparedStatement ps = connect.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                eDangki dk = new eDangki();
+                dk.setMaHP(rs.getString("MaHP"));
+                dk.setSoSV(rs.getString("SoLuongSV"));
+                list.add(dk);
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoDiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    public ArrayList<eDangki> getTenMonHoc(){
+        ArrayList<eDangki> list = getMonHocDangKi();
+        for(eDangki item : list){
+            try {
+                String sql ="SELECT TenMH FROM MonHoc WHERE MaMH ='"+item.getMaHP()+"'";
+                PreparedStatement ps = connect.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                   item.setTenHP(rs.getString("TenMH"));
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(DaoDiem.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return list;
     }
 }

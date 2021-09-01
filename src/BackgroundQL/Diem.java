@@ -5,6 +5,11 @@
  */
 package BackgroundQL;
 
+import Customtable.customDiem;
+import DAO.DaoDiem;
+import Emtity.eDangki;
+import java.util.ArrayList;
+
 /**
  *
  * @author thanh
@@ -14,10 +19,15 @@ public class Diem extends javax.swing.JPanel {
     /**
      * Creates new form Diem
      */
+    DaoDiem dao = new DaoDiem();
     public Diem() {
         initComponents();
+        HienThi();
     }
-
+    public void HienThi(){
+        ArrayList<eDangki> list = dao.getTenMonHoc();
+        tableMonHoc.setModel(new customDiem(list));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,7 +41,7 @@ public class Diem extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableMonHoc = new javax.swing.JTable();
         btnOK = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -59,7 +69,7 @@ public class Diem extends javax.swing.JPanel {
                 .addGap(24, 24, 24))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableMonHoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -70,7 +80,7 @@ public class Diem extends javax.swing.JPanel {
                 "STT", "Mã môn", "Tên môn", "Số sinh viên"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableMonHoc);
 
         btnOK.setBackground(new java.awt.Color(0, 102, 102));
         btnOK.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -129,6 +139,6 @@ public class Diem extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableMonHoc;
     // End of variables declaration//GEN-END:variables
 }

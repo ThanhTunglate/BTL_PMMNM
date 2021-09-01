@@ -46,16 +46,6 @@ public class customMonHoc extends AbstractTableModel{
             default: return null;
         }
     }
-//
-//    @Override
-//    public Class getColumnClass(int columnIndex) {
-//        return classes[columnIndex]; //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    @Override
-//    public String getColumnName(int column) {
-//        return name[column]; //To change body of generated methods, choose Tools | Templates.
-//    }
         @Override
     public Class getColumnClass(int columnIndex)
     {
