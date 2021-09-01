@@ -42,7 +42,7 @@ public class DaoDiem {
         ArrayList<eDangki> list = getMonHocDangKi();
         for(eDangki item : list){
             try {
-                String sql ="SELECT TenMH FROM MonHoc WHERE MaMH ='"+item.getMaHP()+"'";
+                String sql ="SELECT TenMH FROM MonHoc WHERE MaMH ='"+item.getMaHP().substring(0, 5)+"'";
                 PreparedStatement ps = connect.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
