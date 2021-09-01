@@ -58,7 +58,7 @@ public class ThanhToan extends javax.swing.JFrame {
     
     public void ThanhToan(){
         Kiemtra();
-        if(csdl.Thanhtoan(csdl.getTaiChinh(Masv).getSotiendu()-Double.valueOf(txtTong.getText()), Masv,csdl.getTaiChinh(Masv).getSotienno()-Double.valueOf(txtTong.getText()))){
+        if(csdl.Thanhtoan(csdl.getTaiChinh(Masv).getSotiendu()-Double.parseDouble(txtTong.getText()), Masv,csdl.getTaiChinh(Masv).getSotienno()-Double.parseDouble(txtTong.getText()))){
             Setting();
             int i[]= tableThanhToan.getSelectedRows();
             for(int item : i){
@@ -361,7 +361,7 @@ public class ThanhToan extends javax.swing.JFrame {
     }//GEN-LAST:event_btnbackActionPerformed
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
-        
+        ThanhToan();
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void btnKiemtraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKiemtraActionPerformed

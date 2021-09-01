@@ -59,7 +59,8 @@ public class Taichinh extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Vui lòng nhập số tiền muốn nạp!","",JOptionPane.WARNING_MESSAGE);
         }
         else{
-            if(csdl.NapTien(txtMasv.getText(), Double.parseDouble(txtNaptien.getText()))){
+            double a= csdl.getTaiChinh(txtMasv.getText()).getSotiendu();
+            if(csdl.NapTien(txtMasv.getText(), a+Double.parseDouble(txtNaptien.getText()))){
                 JOptionPane.showMessageDialog(this,"Nạp thành công!","",JOptionPane.INFORMATION_MESSAGE);
                 Kiemtra();
             }

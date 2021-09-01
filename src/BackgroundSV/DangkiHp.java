@@ -10,6 +10,7 @@ import BackgroundQL.BgrQuanly;
 import BackgroundSV.BgrSV;
 import Customtable.customDangki;
 import DAO.DaoDangki;
+import DAO.DaoTaichinh;
 import Emtity.eDangki;
 import Emtity.eDiem;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class DangkiHp extends javax.swing.JFrame {
      * Creates new form DangkiHp
      */
     DaoDangki csdl = new DaoDangki();
+    DaoTaichinh tc= new DaoTaichinh();
     ArrayList<eDangki> list;
     ArrayList<eDangki> list1;
     public DangkiHp() {
@@ -68,6 +70,8 @@ public class DangkiHp extends javax.swing.JFrame {
          }
          if(csdl.ThemDangki(tk)){
              Hienthi();
+             double a=tc.getTaiChinh(Masv).getSotienno();
+             tc.No(Masv, (Double.parseDouble(list.get(i).getSotinchi())*300000)+a);
              JOptionPane.showMessageDialog(this, "Thêm thành công!", "", JOptionPane.WARNING_MESSAGE);
          }
          else

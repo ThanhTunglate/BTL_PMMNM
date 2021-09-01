@@ -35,6 +35,20 @@ public class DaoTaichinh {
         return false;
     }
     
+    public boolean No(String Masv, double tienno){
+        conn = ConnecttoSql.getconConnection();
+        String sql="UPDATE TaiChinh SET SoTienConNo=? WHERE MaSV=?";
+        try {
+            PreparedStatement ps= conn.prepareStatement(sql);
+            ps.setString(1, String.valueOf(tienno));
+            ps.setString(2, Masv);
+            return ps.executeUpdate() >0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
     public boolean Thanhtoan(double Somoi, String Masv, double Sono){
         conn = ConnecttoSql.getconConnection();
         String sql="UPDATE TaiChinh SET SoDuKhaDung=?, SoTienConNo= ? WHERE MaSV=?";
