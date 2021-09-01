@@ -23,6 +23,7 @@ public class Taikhoan extends javax.swing.JPanel {
     public Taikhoan() {
         initComponents();
         HienThi();
+        txtTaikhoan.setText("SV");
     }
     
     public void HienThi(){

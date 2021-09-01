@@ -22,7 +22,7 @@ public class Lophoc extends javax.swing.JPanel {
     public Lophoc() {
         initComponents();
         HienThi();
-      
+        txt_maLop.setText("LH");
     }
      private void HienThi() {
         list = csdl.getListLop();

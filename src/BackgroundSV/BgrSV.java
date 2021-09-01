@@ -27,6 +27,10 @@ public class BgrSV extends javax.swing.JFrame {
     public BgrSV() {
         initComponents();
         setLocationRelativeTo(null);
+        new DaoSinhvien().findByMaSV(Amain.DangNhap.nameLogin);
+        txtMaSV.setText(model.listSV.get(0).getMasinhvien());
+        txtName.setText(model.listSV.get(0).getTensinhvien());
+        txtClass.setText(model.listSV.get(0).getMalop());
     }
     
     public String Masv;

@@ -40,6 +40,7 @@ public class SinhVien extends javax.swing.JPanel {
         x.getAll();
         loadCbxMaLop();
         loadData();
+        txtMaSV.setText("SV");
     }
     
     private void loadData(){
@@ -476,7 +477,7 @@ public class SinhVien extends javax.swing.JPanel {
         loadData();
     }//GEN-LAST:event_btnResetActionPerformed
     private void clearText(){
-        txtMaSV.setText("");
+        txtMaSV.setText("SV");
         txtName.setText("");
         cbxMaLop.setSelectedIndex(1);
         txtNgaySinh.setText("");
