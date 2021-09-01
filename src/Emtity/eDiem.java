@@ -11,28 +11,25 @@ package Emtity;
  */
 public class eDiem {
     private String Masinhvien;
-    private String Tensinhvien;
-    private String Mamon;
-    private String Tenmon;
+    private String MaHP;
     private float Diemtx1;
     private float Diemtx2;
     private float Diemhs2;
     private float Diemthi;
     private float DiemTB;
-
+    private String TrangThai;
     public eDiem() {
     }
 
-    public eDiem(String Masinhvien, String Tensinhvien, String Mamon, String Tenmon, float Diemtx1, float Diemtx2, float Diemhs2, float Diemthi, float DiemTB) {
+    public eDiem(String Masinhvien, String MaHP, float Diemtx1, float Diemtx2, float Diemhs2, float Diemthi, float DiemTB, String TrangThai) {
         this.Masinhvien = Masinhvien;
-        this.Tensinhvien = Tensinhvien;
-        this.Mamon = Mamon;
-        this.Tenmon = Tenmon;
+        this.MaHP = MaHP;
         this.Diemtx1 = Diemtx1;
         this.Diemtx2 = Diemtx2;
         this.Diemhs2 = Diemhs2;
         this.Diemthi = Diemthi;
         this.DiemTB = DiemTB;
+        this.TrangThai = TrangThai;
     }
 
     public String getMasinhvien() {
@@ -43,28 +40,12 @@ public class eDiem {
         this.Masinhvien = Masinhvien;
     }
 
-    public String getTensinhvien() {
-        return Tensinhvien;
+    public String getMaHP() {
+        return MaHP;
     }
 
-    public void setTensinhvien(String Tensinhvien) {
-        this.Tensinhvien = Tensinhvien;
-    }
-
-    public String getMamon() {
-        return Mamon;
-    }
-
-    public void setMamon(String Mamon) {
-        this.Mamon = Mamon;
-    }
-
-    public String getTenmon() {
-        return Tenmon;
-    }
-
-    public void setTenmon(String Tenmon) {
-        this.Tenmon = Tenmon;
+    public void setMaHP(String MaHP) {
+        this.MaHP = MaHP;
     }
 
     public float getDiemtx1() {
@@ -107,5 +88,12 @@ public class eDiem {
         this.DiemTB = DiemTB;
     }
 
+    public String getTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(String TrangThai) {
+        this.TrangThai = TrangThai;
+    }
     
 }
