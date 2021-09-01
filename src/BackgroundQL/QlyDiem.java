@@ -350,7 +350,7 @@ public class QlyDiem extends javax.swing.JFrame {
         if(index != -1){
             if(SoTC == 4){
                 eDiem diem = list.get(index);
-                txtSTT.setText(String.valueOf(index));
+                txtSTT.setText(String.valueOf(index) +1);
                 txtMaSV.setText(diem.getMasinhvien());
                 txtDiemTX1.setText(String.valueOf(diem.getDiemtx1()));
                 txtDiemTX2.setText(String.valueOf(diem.getDiemtx2()));
@@ -358,7 +358,7 @@ public class QlyDiem extends javax.swing.JFrame {
                 txtDiemThi.setText(String.valueOf(diem.getDiemthi()));
             }else{
                 eDiem diem = list.get(index);
-                txtSTT.setText(String.valueOf(index));
+                txtSTT.setText(String.valueOf(index) +1);
                 txtMaSV.setText(diem.getMasinhvien());
                 txtDiemTX1.setText(String.valueOf(diem.getDiemtx1()));
                 txtDiemTX2.setText(String.valueOf(diem.getDiemtx2()));

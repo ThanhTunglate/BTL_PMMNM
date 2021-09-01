@@ -46,8 +46,7 @@ public class customQuanLyDiem3 extends AbstractTableModel {
             case 4:
                 return ps.get(rowIndex).getDiemthi();
             case 5:
-                ps.get(rowIndex).tinhDiemTB();
-                return ps.get(rowIndex).getDiemTB();
+               return ps.get(rowIndex).tinhDiemTB();
             case 6:
                 return ps.get(rowIndex).XepLoai(ps.get(rowIndex).getDiemTB());
             default:

@@ -22,12 +22,12 @@ public class eDiem {
     
     public eDiem() {
     }
-    public void tinhDiemTB(){
+    public float tinhDiemTB(){
         if(Diemhs2 >=0){
-            DiemTB = (((Diemtx1 + Diemtx2 + Diemhs2 *2) / 4 ) + Diemthi*2) / 3;
+             return DiemTB = (((Diemtx1 + Diemtx2 + Diemhs2 *2) / 4 ) + Diemthi*2) / 3;
         }
         else{
-            DiemTB = (((Diemtx1 + Diemtx2) / 2 ) + Diemthi*2) / 3;
+            return DiemTB = (((Diemtx1 + Diemtx2) / 2 ) + Diemthi*2) / 3;
         }
     }
     public String XepLoai(float diemtk) {
