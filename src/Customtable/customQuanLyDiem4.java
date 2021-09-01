@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class customQuanLyDiem4 extends AbstractTableModel {
 
-    private String name[] = {"STT", "Mã sinh viên", "Điểm TX1", "Điểm TX1", "Điểm HS2", "Điểm Thi", "Điểm TK", "Xếp Loại"};
+    private String name[] = {"STT", "Mã sinh viên", "Điểm TX1", "Điểm TX2", "Điểm HS2", "Điểm Thi", "Điểm TK", "Xếp Loại"};
     private Class classes[] = {int.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class};
     ArrayList<eDiem> ps = new ArrayList<>();
 

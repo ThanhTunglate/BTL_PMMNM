@@ -348,27 +348,62 @@ public class QlyDiem extends javax.swing.JFrame {
     private void tableQLDiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableQLDiemMouseClicked
         int index = tableQLDiem.getSelectedRow();
         if(index != -1){
-            eDiem diem = list.get(index);
-        txtSTT.setText(String.valueOf(index));
-        txtMaSV.setText(diem.getMasinhvien());
-        txtDiemTX1.setText(String.valueOf(diem.getDiemtx1()));
-        txtDiemTX2.setText(String.valueOf(diem.getDiemtx2()));
-        txtDiemGiuaKI.setText(String.valueOf(diem.getDiemhs2()));
-        txtDiemThi.setText(String.valueOf(diem.getDiemthi()));
+            if(SoTC == 4){
+                eDiem diem = list.get(index);
+                txtSTT.setText(String.valueOf(index));
+                txtMaSV.setText(diem.getMasinhvien());
+                txtDiemTX1.setText(String.valueOf(diem.getDiemtx1()));
+                txtDiemTX2.setText(String.valueOf(diem.getDiemtx2()));
+                txtDiemGiuaKI.setText(String.valueOf(diem.getDiemhs2()));
+                txtDiemThi.setText(String.valueOf(diem.getDiemthi()));
+            }else{
+                eDiem diem = list.get(index);
+                txtSTT.setText(String.valueOf(index));
+                txtMaSV.setText(diem.getMasinhvien());
+                txtDiemTX1.setText(String.valueOf(diem.getDiemtx1()));
+                txtDiemTX2.setText(String.valueOf(diem.getDiemtx2()));
+                txtDiemGiuaKI.enable(false);
+                txtDiemThi.setText(String.valueOf(diem.getDiemthi()));
+            }
         }
     }//GEN-LAST:event_tableQLDiemMouseClicked
 
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
         if(!txtSTT.getText().isEmpty()){
             if(!txtDiemTX1.getText().isEmpty() && !txtDiemTX2.getText().isEmpty() && !txtDiemGiuaKI.getText().isEmpty() && !txtDiemThi.getText().isEmpty()){
-                int response =JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn xóa?","",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+                int response =JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn cập nhật?","",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
                 if(response == JOptionPane.YES_OPTION){
-                    int index = tableQLDiem.getSelectedRow();
-                    list.get(index).setDiemtx1(Float.parseFloat(txtDiemTX1.getText()));
-                    list.get(index).setDiemtx2(Float.parseFloat(txtDiemTX2.getText()));
-                    list.get(index).setDiemhs2(Float.parseFloat(txtDiemGiuaKI.getText()));
-                    list.get(index).setDiemthi(Float.parseFloat(txtDiemThi.getText()));
-                    HienThi();
+                    if(SoTC == 4){
+                        try {
+                            float DiemTX1 = Float.parseFloat(txtDiemTX1.getText());
+                            float DiemTX2 = Float.parseFloat(txtDiemTX2.getText());
+                            float DiemHS2 = Float.parseFloat(txtDiemGiuaKI.getText());
+                            float DiemThi = Float.parseFloat(txtDiemThi.getText());
+                            if( DiemTX1>=0 && DiemTX2 >=0 && DiemHS2 >=0 && DiemThi >=0){
+                            dao.updateDiem4(DiemTX1, DiemTX2, DiemHS2, DiemThi, txtMaSV.getText(), MaMH);
+                            HienThi();
+                            }else{
+                                JOptionPane.showMessageDialog(this, "Điểm không được âm", "Chú ý", JOptionPane.WARNING_MESSAGE);
+                            }
+                            
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(this, "Lỗi dữ liệu đầu vào", "Chú ý", JOptionPane.WARNING_MESSAGE);
+                        }
+                    }else{
+                        try {
+                            float DiemTX1 = Float.parseFloat(txtDiemTX1.getText());
+                            float DiemTX2 = Float.parseFloat(txtDiemTX2.getText());
+                            float DiemThi = Float.parseFloat(txtDiemThi.getText());
+                            if( DiemTX1>=0 && DiemTX2 >=0 && DiemThi >=0){
+                            dao.updateDiem3(DiemTX1, DiemTX2, DiemThi, txtMaSV.getText(), MaMH);
+                            HienThi();
+                            }else{
+                                JOptionPane.showMessageDialog(this, "Điểm không được âm", "Chú ý", JOptionPane.WARNING_MESSAGE);
+                            }
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(this, "Lỗi dữ liệu đầu vào", "Chú ý", JOptionPane.WARNING_MESSAGE);
+                        }
+                    }
                 }
             }
             else{

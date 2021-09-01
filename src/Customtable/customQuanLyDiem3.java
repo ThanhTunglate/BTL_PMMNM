@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  * @author Admin
  */
 public class customQuanLyDiem3 extends AbstractTableModel {
-    private String name[] = {"STT", "Mã sinh viên", "Điểm TX1", "Điểm TX1", "Điểm Thi", "Điểm TK", "Xếp Loại"};
+    private String name[] = {"STT", "Mã sinh viên", "Điểm TX1", "Điểm TX2", "Điểm Thi", "Điểm TK", "Xếp Loại"};
     private Class classes[] = {int.class, String.class, String.class, String.class, String.class, String.class, String.class};
     ArrayList<eDiem> ps = new ArrayList<>();
 
@@ -44,13 +44,11 @@ public class customQuanLyDiem3 extends AbstractTableModel {
             case 3:
                 return ps.get(rowIndex).getDiemtx2();
             case 4:
-                return ps.get(rowIndex).getDiemhs2();
-            case 5:
                 return ps.get(rowIndex).getDiemthi();
-            case 6:
+            case 5:
                 ps.get(rowIndex).tinhDiemTB();
                 return ps.get(rowIndex).getDiemTB();
-            case 7:
+            case 6:
                 return ps.get(rowIndex).XepLoai(ps.get(rowIndex).getDiemTB());
             default:
                 return null;

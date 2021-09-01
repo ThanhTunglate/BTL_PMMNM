@@ -101,4 +101,24 @@ public class DaoDiem {
         }
         return null;
     }
+    public void updateDiem4(float DiemTX1, float DiemTX2, float DiemHS2, float DiemThi, String MaSV, String MaHP){
+        try {
+            String sql ="UPDATE DangKi SET DiemTX1 = "+DiemTX1+", DiemTX2 ="+DiemTX2+", DiemHS2 = "+DiemHS2+", DiemThi = "+DiemThi+", DiemTB = (((DiemTX1 + DiemTX2 + DiemHS2 *2) / 4 ) + DiemThi*2) / 3"
+                    + "WHERE  MaSV ='"+MaSV+"' AND MAMH = '"+MaHP+"' ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoDiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     public void updateDiem3(float DiemTX1, float DiemTX2, float DiemThi, String MaSV, String MaHP){
+        try {
+            String sql ="UPDATE DangKi SET DiemTX1 = "+DiemTX1+", DiemTX2 ="+DiemTX2+", DiemThi = "+DiemThi+", DiemTB = (((DiemTX1 + DiemTX2) / 2 ) + DiemThi*2) / 3"
+                    + "WHERE  MaSV ='"+MaSV+"' AND MAMH = '"+MaHP+"'";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoDiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
