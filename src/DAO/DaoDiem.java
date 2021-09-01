@@ -7,6 +7,8 @@ package DAO;
 
 import Emtity.eDangki;
 import Emtity.eDiem;
+import Emtity.eKQHT;
+import Emtity.eSinhVien;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,9 +22,8 @@ import java.util.logging.Logger;
  * @author thanh
  */
 public class DaoDiem {
-    Connection conn;
+    Connection conn = ConnecttoSql.getconConnection();
     public ArrayList<eDangki> getMonHocDangKi(){
-        conn=ConnecttoSql.getconConnection();
         try {
             ArrayList<eDangki> list = new ArrayList();
             String sql ="SELECT MaHP, SoLuongSV FROM MonHocDangKi";
@@ -41,7 +42,6 @@ public class DaoDiem {
         return null;
     }
     public ArrayList<eDangki> getTenMonHoc(){
-        conn=ConnecttoSql.getconConnection();
         ArrayList<eDangki> list = getMonHocDangKi();
         for(eDangki item : list){
             try {
@@ -59,7 +59,6 @@ public class DaoDiem {
         return list;
     }
     public ArrayList<eDiem> getDiem4(String MaHP){
-        conn=ConnecttoSql.getconConnection();
         try {
             ArrayList<eDiem> list = new ArrayList<>();
             String sql ="Select * FROM DangKi WHERE MaHP = '"+MaHP+"'";
@@ -81,7 +80,6 @@ public class DaoDiem {
         return null;
     }
     public ArrayList<eDiem> getDiem3(String MaHP){
-        conn=ConnecttoSql.getconConnection();
         try {
             ArrayList<eDiem> list = new ArrayList<>();
             String sql ="Select * FROM DangKi WHERE MaHP = '"+MaHP+"'";
@@ -121,4 +119,60 @@ public class DaoDiem {
             Logger.getLogger(DaoDiem.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+     public eSinhVien CheckMaSV(String masv) {
+        PreparedStatement psCheck = null;
+        ResultSet rs = null;
+        conn = ConnecttoSql.getconConnection();
+        try {
+            psCheck = conn.prepareStatement("select * from SinhVien where MaSV=?");
+            psCheck.setString(1, masv);
+            rs = psCheck.executeQuery();
+            while (rs.next()) {
+                eSinhVien sv = new eSinhVien();
+                sv.setMasinhvien(rs.getString(1));
+                sv.setTensinhvien(rs.getString(2));
+                sv.setMalop(rs.getString(3));
+                return sv;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } 
+        return null;
+    }
+     public ArrayList<eKQHT> getKQHT(String MaSV){
+        try {
+            ArrayList<eKQHT> list = new ArrayList<>();
+            String sql ="SELECT * From DangKi WHERE MaSV ='"+MaSV+"'";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                eKQHT kq = new eKQHT();
+                kq.setMaMH(rs.getString("MaHP"));
+                kq.setDiemTX1(rs.getFloat("DiemTX1"));
+                kq.setDiemTX1(rs.getFloat("DiemTX2"));
+                kq.setDiemTX1(rs.getFloat("DiemHS2"));
+                list.add(kq);
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoDiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return null;
+    }
+     public ArrayList<eKQHT> allKQHT(String MaSV){
+         ArrayList<eKQHT> list = getKQHT(MaSV);
+         for(eKQHT item : list){
+             try {
+                 String sql = "SELECT TenMH FROM MonHoc Where MaMH = '"+item.getMaMH()+"'";
+                 PreparedStatement ps = conn.prepareStatement(sql);
+                 ResultSet rs = ps.executeQuery();
+                 while(rs.next()){
+                     item.setTenMH(rs.getString("TenMH"));
+                 }
+             } catch (SQLException ex) {
+                 Logger.getLogger(DaoDiem.class.getName()).log(Level.SEVERE, null, ex);
+             }
+         }
+         return list;
+     }
 }

@@ -82,6 +82,7 @@ public class Diem extends javax.swing.JPanel {
                 "STT", "Mã môn", "Tên môn", "Số sinh viên"
             }
         ));
+        tableMonHoc.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tableMonHoc);
 
         btnOK.setBackground(new java.awt.Color(0, 102, 102));

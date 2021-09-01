@@ -154,6 +154,7 @@ public class QlyDiem extends javax.swing.JFrame {
                 "STT", "Mã sinh viên", "Điểm thường xuyên 1", "Điểm thường xuyên 2", "Điểm giữa kì", "Điểm thi", "Điểm TB", "Xếp loại"
             }
         ));
+        tableQLDiem.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tableQLDiem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableQLDiemMouseClicked(evt);
@@ -324,8 +325,6 @@ public class QlyDiem extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(43, 43, 43))))
         );
-
-        jLabel4.getAccessibleContext().setAccessibleName("Số tín chỉ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
