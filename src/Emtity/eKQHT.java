@@ -10,32 +10,48 @@ package Emtity;
  * @author Admin
  */
 public class eKQHT {
+
     private String MaMH;
     private String TenMH;
     private float DiemTX1;
     private float DiemTX2;
     private float DiemHS2;
     private float DiemTB;
+    private float DiemThi;
+    private float DiemTK;
+    private String XepLoai;
 
     public eKQHT() {
     }
 
-    public eKQHT(String MaMH, String TenMH, float DiemTX1, float DiemTX2, float DiemHS2, float DiemTB) {
-        this.MaMH = MaMH;
-        this.TenMH = TenMH;
-        this.DiemTX1 = DiemTX1;
-        this.DiemTX2 = DiemTX2;
-        this.DiemHS2 = DiemHS2;
-        this.DiemTB = DiemTB;
-    }
-        public float tinhDiemTB(){
-        if(DiemHS2 >=0){
-             return DiemTB = (DiemTX1 + DiemTX2 + DiemHS2 *2) / 4 ;
-        }
-        else{
+    public float tinhDiemTB() {
+        if (DiemHS2 >= 0) {
+            return DiemTB = (DiemTX1 + DiemTX2 + DiemHS2 * 2) / 4;
+        } else {
             return DiemTB = (DiemTX1 + DiemTX2) / 2;
         }
     }
+
+    public float tinhDiemTK() {
+        return (tinhDiemTB() + DiemThi * 2) / 3;
+    }
+
+    public String XepLoai(float diemtk) {
+        if (diemtk >= 8.5) {
+            return "Giỏi";
+        } else {
+            if (diemtk >= 7 && diemtk < 8.5) {
+                return "Khá";
+            } else {
+                if (diemtk >= 4 && diemtk < 7) {
+                    return "Trung Bình";
+                } else {
+                    return "Yếu";
+                }
+            }
+        }
+    }
+
     public String getMaMH() {
         return MaMH;
     }
@@ -83,5 +99,29 @@ public class eKQHT {
     public void setDiemThi(float DiemTB) {
         this.DiemTB = DiemTB;
     }
-    
+
+    public float getDiemTB() {
+        return DiemTB;
+    }
+
+    public void setDiemTB(float DiemTB) {
+        this.DiemTB = DiemTB;
+    }
+
+    public float getDiemTK() {
+        return DiemTK;
+    }
+
+    public void setDiemTK(float DiemTK) {
+        this.DiemTK = DiemTK;
+    }
+
+    public String getXepLoai() {
+        return XepLoai;
+    }
+
+    public void setXepLoai(String XepLoai) {
+        this.XepLoai = XepLoai;
+    }
+
 }

@@ -151,6 +151,7 @@ public class DaoDiem {
                 kq.setDiemTX1(rs.getFloat("DiemTX1"));
                 kq.setDiemTX2(rs.getFloat("DiemTX2"));
                 kq.setDiemHS2(rs.getFloat("DiemHS2"));
+                kq.setDiemThi(rs.getFloat("DiemThi"));
                 list.add(kq);
             }
             return list;
