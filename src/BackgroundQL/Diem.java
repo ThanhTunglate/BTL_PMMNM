@@ -9,6 +9,7 @@ import Customtable.customDiem;
 import DAO.DaoDiem;
 import Emtity.eDangki;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,12 +21,13 @@ public class Diem extends javax.swing.JPanel {
      * Creates new form Diem
      */
     DaoDiem dao = new DaoDiem();
+    ArrayList<eDangki> list;
     public Diem() {
         initComponents();
         HienThi();
     }
     public void HienThi(){
-        ArrayList<eDangki> list = dao.getTenMonHoc();
+        list = dao.getTenMonHoc();
         tableMonHoc.setModel(new customDiem(list));
     }
     /**
@@ -128,8 +130,17 @@ public class Diem extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
-        QlyDiem ql= new QlyDiem();
-        ql.setVisible(true);
+        int index = tableMonHoc.getSelectedRow();
+        if(index >=0){
+            QlyDiem ql= new QlyDiem();
+            ql.setVisible(true);
+            ql.MaMH = list.get(index).getMaHP();
+            ql.TenMH = list.get(index).getTenHP();
+            ql.SoSV = list.get(index).getSoSV();
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn chọn môn học từ danh sách", "Chú ý", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnOKActionPerformed
 
 

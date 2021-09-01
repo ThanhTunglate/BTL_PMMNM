@@ -6,6 +6,7 @@
 package DAO;
 
 import Emtity.eDangki;
+import Emtity.eDiem;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -53,5 +54,26 @@ public class DaoDiem {
             }
         }
         return list;
+    }
+    public ArrayList<eDiem> getDiem(String MaHP){
+        try {
+            ArrayList<eDiem> list = new ArrayList<>();
+            String sql ="Select MaSV, DiemTX1, Diem TX2, DiemHS2, DiemThi FROM DangKi WHERE MaHP = '"+MaHP+"'";
+            PreparedStatement ps = connect.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                eDiem diem = new eDiem();
+                diem.setMasinhvien(rs.getString("MaSV"));
+                diem.setDiemtx1(rs.getString("DiemTX1"));
+                diem.setDiemtx2(rs.getString("DiemTX2"));
+                diem.setDiemhs2(rs.getString("DiemHS2"));
+                diem.setDiemthi(rs.getString("DiemThi"));
+                list.add(diem);
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoDiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

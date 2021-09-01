@@ -14,13 +14,13 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Admin
  */
-public class customDiem extends AbstractTableModel {
+public class customQuanLyDiem extends AbstractTableModel {
 
-    private String name[] = {"STT", "Mã học phần", "Tên môn", "Số sinh viên"};
-    private Class classes[] = {int.class, String.class, String.class, int.class};
-    ArrayList<eDangki> ps = new ArrayList<>();
+    private String name[] = {"STT", "Mã sinh viên", "Điểm TX1", "Điểm TX1", "Điểm HS2", "Điểm Thi", "Điểm TK", "Xếp Loại"};
+    private Class classes[] = {int.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class};
+    ArrayList<eDiem> ps = new ArrayList<>();
 
-    public customDiem(ArrayList<eDangki> p) {
+    public customQuanLyDiem(ArrayList<eDiem> p) {
         this.ps = p;
     }
 
@@ -40,11 +40,19 @@ public class customDiem extends AbstractTableModel {
             case 0:
                 return rowIndex + 1;
             case 1:
-                return ps.get(rowIndex).getMaHP();
+                return ps.get(rowIndex).getMasinhvien();
             case 2:
-                return ps.get(rowIndex).getTenHP();
+                return ps.get(rowIndex).getDiemtx1();
             case 3:
-                return ps.get(rowIndex).getSoSV();
+                return ps.get(rowIndex).getDiemtx2();
+            case 4:
+                return ps.get(rowIndex).getDiemhs2();
+            case 5:
+                return ps.get(rowIndex).getDiemthi();
+            case 6:
+                return ps.get(rowIndex).tinhDiemTB();
+            case 7:
+                return ps.get(rowIndex).XepLoai(ps.get(rowIndex).tinhDiemTB());
             default:
                 return null;
         }
