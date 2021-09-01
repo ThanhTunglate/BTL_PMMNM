@@ -45,14 +45,27 @@ public class DangkiHp extends javax.swing.JFrame {
      public void Dangki(){
          int i = table1.getSelectedRow();
          eDiem tk= new eDiem();
-         tk.setMaHP(list.get(i).getMaHP());
-         tk.setMasinhvien(Masv);
-         tk.setDiemTB(0);
-         tk.setDiemtx1(0);
-         tk.setDiemtx2(0);
-         tk.setDiemhs2(0);
-         tk.setDiemthi(0);
-         tk.setTrangThai("Chưa nộp học phí");
+         if(list.get(i).getSotinchi()=="3")
+         {
+            tk.setMaHP(list.get(i).getMaHP());
+            tk.setMasinhvien(Masv);
+            tk.setDiemTB(0);
+            tk.setDiemtx1(0);
+            tk.setDiemtx2(0);
+            tk.setDiemhs2(-1);
+            tk.setDiemthi(0);
+            tk.setTrangThai("Chưa nộp học phí");
+         }
+         else{
+            tk.setMaHP(list.get(i).getMaHP());
+            tk.setMasinhvien(Masv);
+            tk.setDiemTB(0);
+            tk.setDiemtx1(0);
+            tk.setDiemtx2(0);
+            tk.setDiemhs2(0);
+            tk.setDiemthi(0);
+            tk.setTrangThai("Chưa nộp học phí");
+         }
          if(csdl.ThemDangki(tk)){
              Hienthi();
              JOptionPane.showMessageDialog(this, "Thêm thành công!", "", JOptionPane.WARNING_MESSAGE);
