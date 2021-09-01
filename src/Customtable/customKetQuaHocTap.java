@@ -47,7 +47,11 @@ public class customKetQuaHocTap extends AbstractTableModel {
             case 4:
                 return ps.get(rowIndex).getDiemTX2();
             case 5:
-                return ps.get(rowIndex).getDiemHS2();
+                if(ps.get(rowIndex).getDiemHS2() >=0){
+                    return ps.get(rowIndex).getDiemHS2();
+                }else{
+                    return "--";
+                }
             case 6:
                  return ps.get(rowIndex).tinhDiemTB();
             default:
