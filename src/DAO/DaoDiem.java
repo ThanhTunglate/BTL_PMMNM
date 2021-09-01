@@ -58,7 +58,7 @@ public class DaoDiem {
     public ArrayList<eDiem> getDiem(String MaHP){
         try {
             ArrayList<eDiem> list = new ArrayList<>();
-            String sql ="Select MaSV, DiemTX1, Diem TX2, DiemHS2, DiemThi FROM DangKi WHERE MaHP = '"+MaHP+"'";
+            String sql ="Select * FROM DangKi WHERE MaHP = '"+MaHP+"'";
             PreparedStatement ps = connect.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
