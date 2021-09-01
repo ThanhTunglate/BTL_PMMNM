@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class customDangki extends AbstractTableModel{
     private String name[]={"Mã môn","Tên môn","Số tín chỉ", "Hình thức thi", "Mã giảng viên", "Số lượng"};
-    private Class classes[]={String.class,String.class,int.class,String.class,String.class,int.class};
+    private Class classes[]={String.class,String.class,String.class,String.class,String.class,String.class};
     ArrayList<eDangki> ps= new ArrayList<eDangki>();
     public customDangki(ArrayList<eDangki> p) {
         this.ps=p;

@@ -64,8 +64,9 @@ public class DaoDangki {
                        dk.setHinhthucthi(mh.get(j).getHinhthucthi());
                    }
                }
-               
-               list.add(dk);
+               if(dk.getTenHP() !=null){
+                   list.add(dk);
+               }
             }
         //} catch (Exception e) {
             //e.printStackTrace();
