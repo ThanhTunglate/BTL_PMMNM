@@ -22,16 +22,16 @@ public class QlyDiem extends javax.swing.JFrame {
      */
     public String MaMH;
     public String TenMH;
-    public String SoSV;
-    public QlyDiem(String MaMH, String TenMH, String SoSV) {
+    public String SoTC;
+    public QlyDiem(String MaMH, String TenMH, String SoTC) {
         initComponents();
         setLocationRelativeTo(null);
         this.MaMH = MaMH;
         this.TenMH = TenMH;
-        this.SoSV = SoSV;
+        this.SoTC = SoTC;
         txtMaMon.setText(MaMH);
         txtTenMon.setText(TenMH);
-        txtSoSinhVien.setText(SoSV);
+        txtSoSinhVien.setText(SoTC);
         HienThi();
    }
     ArrayList<eDiem> list;
