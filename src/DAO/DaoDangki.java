@@ -57,13 +57,16 @@ public class DaoDangki {
                dk.setMaHP(hp.get(i).getMamon());
                dk.setMagiangvien(hp.get(i).getMaGV());
                dk.setSoSV(hp.get(i).getSoSV());
-               for(int j=0 ; j< mh.size(); j++){
-                   if((hp.get(i).getMamon().substring(0, 5))== mh.get(j).getMamon()){
-                       dk.setTenHP(mh.get(j).getTenmon());
-                       dk.setSotinchi(mh.get(j).getSotinchi());
-                       dk.setHinhthucthi(mh.get(j).getHinhthucthi());
-                   }
-               }
+               dk.setTenHP(x.TimKiem(hp.get(i).getMamon()).getTenmon());
+               dk.setSotinchi(x.TimKiem(hp.get(i).getMamon()).getSotinchi());
+               dk.setTenHP(x.TimKiem(hp.get(i).getMamon()).getTenmon());
+//               for(int j=0 ; j< mh.size(); j++){
+//                   if((hp.get(i).getMamon().substring(0, 5))== mh.get(j).getMamon()){
+//                       dk.setTenHP(mh.get(j).getTenmon());
+//                       dk.setSotinchi(mh.get(j).getSotinchi());
+//                       dk.setHinhthucthi(mh.get(j).getHinhthucthi());
+//                   }
+//               }
                if(dk.getTenHP() !=null){
                    list.add(dk);
                }
