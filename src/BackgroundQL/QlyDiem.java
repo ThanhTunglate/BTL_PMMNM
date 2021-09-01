@@ -27,8 +27,8 @@ public class QlyDiem extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.MaMH = MaMH;
-        this.TenMH = MaMH;
-        this.SoSV = MaMH;
+        this.TenMH = TenMH;
+        this.SoSV = SoSV;
         txtMaMon.setText(MaMH);
         txtTenMon.setText(TenMH);
         txtSoSinhVien.setText(SoSV);
