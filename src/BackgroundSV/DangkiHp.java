@@ -11,6 +11,7 @@ import BackgroundSV.BgrSV;
 import Customtable.customDangki;
 import DAO.DaoDangki;
 import Emtity.eDangki;
+import Emtity.eDiem;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -40,6 +41,27 @@ public class DangkiHp extends javax.swing.JFrame {
          table2.setModel(new customDangki(list1));
          System.out.println(Masv);
      }
+     
+     public void Dangki(){
+         int i = table1.getSelectedRow();
+         eDiem tk= new eDiem();
+         tk.setMaHP(list.get(i).getMaHP());
+         tk.setMasinhvien(Masv);
+         tk.setDiemTB(String.valueOf(0));
+         tk.setDiemtx1(String.valueOf(0));
+         tk.setDiemtx2(String.valueOf(0));
+         tk.setDiemhs2(String.valueOf(0));
+         tk.setDiemthi(String.valueOf(0));
+         tk.setTrangThai("Chưa nộp học phí");
+         if(csdl.ThemDangki(tk)){
+             Hienthi();
+             JOptionPane.showMessageDialog(this, "Thêm thành công!", "", JOptionPane.WARNING_MESSAGE);
+         }
+         else
+             JOptionPane.showMessageDialog(this, "Bạn đã đăng kí học phần này rồi!", "", JOptionPane.WARNING_MESSAGE);
+         
+     }
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -139,6 +161,11 @@ public class DangkiHp extends javax.swing.JFrame {
         btnDangki.setBackground(new java.awt.Color(0, 204, 0));
         btnDangki.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnDangki.setText("Đăng kí");
+        btnDangki.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangkiActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(255, 0, 0));
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -253,6 +280,10 @@ public class DangkiHp extends javax.swing.JFrame {
         sv.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnbackActionPerformed
+
+    private void btnDangkiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangkiActionPerformed
+        Dangki();
+    }//GEN-LAST:event_btnDangkiActionPerformed
 
     /**
      * @param args the command line arguments

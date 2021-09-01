@@ -6,6 +6,8 @@
 package DAO;
 
 import Emtity.eDangki;
+import Emtity.eDangkimon;
+import Emtity.eDiem;
 import Emtity.eHocphan;
 import Emtity.eMonHoc;
 import java.sql.Connection;
@@ -107,7 +109,7 @@ public class DaoDangki {
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
                    item.setMagiangvien(rs.getString("MaGV"));
-                   item.setSotinchi(rs.getString("SoluongSV"));
+                   item.setSoSV(rs.getString("SoluongSV"));
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(DaoDiem.class.getName()).log(Level.SEVERE, null, ex);
@@ -116,6 +118,25 @@ public class DaoDangki {
         return list;
     }
     
-    
+    public boolean ThemDangki(eDiem tk){
+        conn=ConnecttoSql.getconConnection();
+        String sql="INSERT INTO DangKi(MaSV, MaHP, DiemTX1, DiemTX2, DiemHS2, DiemThi, DiemTB, TrangThai)"
+                + "VALUES(?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement ps= conn.prepareStatement(sql);
+            ps.setString(1, tk.getMasinhvien());
+            ps.setString(2, tk.getMaHP());
+            ps.setString(3, tk.getDiemtx1());
+            ps.setString(4, tk.getDiemtx2());
+            ps.setString(5, tk.getDiemhs2());
+            ps.setString(6, tk.getDiemthi());
+            ps.setString(6, tk.getDiemTB());
+            ps.setString(6, tk.getTrangThai());
+            return ps.executeUpdate() >0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     
 }
