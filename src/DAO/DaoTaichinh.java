@@ -54,8 +54,8 @@ public class DaoTaichinh {
         String sql="UPDATE TaiChinh SET SoDuKhaDung=?, SoTienConNo= ? WHERE MaSV=?";
         try {
             PreparedStatement ps= conn.prepareStatement(sql);
-            ps.setDouble(1, Somoi);
-            ps.setDouble(2, Sono);
+            ps.setString(1, String.valueOf(Somoi));
+            ps.setString(2, String.valueOf(Sono));
             ps.setString(3, Masv);
             return ps.executeUpdate() >0;
         } catch (Exception e) {
@@ -85,6 +85,7 @@ public class DaoTaichinh {
     }
     
     public ArrayList<eDangki> getDangKi(String Masv){
+        conn=ConnecttoSql.getconConnection();
         try {
             ArrayList<eDangki> list = new ArrayList();
             String sql ="SELECT MaHP FROM DangKi WHERE MaSV='"+Masv+"' and Trangthai=?";
@@ -104,6 +105,7 @@ public class DaoTaichinh {
     }
     
     public ArrayList<eDangki> getMonHoc(String Masv){
+        conn=ConnecttoSql.getconConnection();
         ArrayList<eDangki> list = getDangKi(Masv);
         for(eDangki item : list){
             try {

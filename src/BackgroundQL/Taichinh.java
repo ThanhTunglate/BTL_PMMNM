@@ -9,6 +9,7 @@ import DAO.DaoSinhvien;
 import DAO.DaoTaichinh;
 import Emtity.eSinhVien;
 import Emtity.eTaiChinh;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -59,16 +60,19 @@ public class Taichinh extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Vui lòng nhập số tiền muốn nạp!","",JOptionPane.WARNING_MESSAGE);
         }
         else{
-            double a= csdl.getTaiChinh(txtMasv.getText()).getSotiendu();
-            if(Double.parseDouble(txtNaptien.getText())>100000){
-                if(csdl.NapTien(txtMasv.getText(), a+Double.parseDouble(txtNaptien.getText()))){
-                    JOptionPane.showMessageDialog(this,"Nạp thành công!","",JOptionPane.INFORMATION_MESSAGE);
-                    Kiemtra();
+            if(Pattern.matches("[0-9]",txtNaptien.getText())){
+                double a= csdl.getTaiChinh(txtMasv.getText()).getSotiendu();
+                if(Double.parseDouble(txtNaptien.getText())>100000){
+                    if(csdl.NapTien(txtMasv.getText(), a+Double.parseDouble(txtNaptien.getText()))){
+                        JOptionPane.showMessageDialog(this,"Nạp thành công!","",JOptionPane.INFORMATION_MESSAGE);
+                        Kiemtra();
+                    }
                 }
+                else
+                    JOptionPane.showMessageDialog(this,"Số tiền nạp phải lớn hơn 100.000VND!","",JOptionPane.WARNING_MESSAGE);
             }
             else
-                JOptionPane.showMessageDialog(this,"Số tiền nạp phải lớn hơn 100.000VND!","",JOptionPane.WARNING_MESSAGE);
-            
+                JOptionPane.showMessageDialog(this,"Bạn phải nhập số tiền bằng chữ số!","",JOptionPane.WARNING_MESSAGE);
         }
     }
     /**

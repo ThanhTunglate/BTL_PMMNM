@@ -35,7 +35,7 @@ public class ThanhToan extends javax.swing.JFrame {
     
     
     public void Setting(){
-        txtTenSv.setText("Xin chào "+ sv.CheckMaSV(Masv).getTensinhvien());
+        txtTenSv.setText("Xin chào !"+ sv.CheckMaSV(Masv).getTensinhvien()+ "...");
         eTaiChinh tc= new eTaiChinh();
         tc= csdl.getTaiChinh(Masv);
         txtTaikhoan.setText(Double.toString(tc.getSotiendu()));
@@ -56,7 +56,7 @@ public class ThanhToan extends javax.swing.JFrame {
     
     public void ThanhToan(){
         Kiemtra();
-        if(csdl.getTaiChinh(Masv).getSotienno()<csdl.getTaiChinh(Masv).getSotiendu()){
+        if(csdl.getTaiChinh(Masv).getSotienno()>csdl.getTaiChinh(Masv).getSotiendu()){
             JOptionPane.showMessageDialog(this, "Tài khoản không đủ tiền!", "", JOptionPane.ERROR_MESSAGE); 
         }
         else{
@@ -93,7 +93,6 @@ public class ThanhToan extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         btnThanhToan = new javax.swing.JButton();
-        btnKiemtra = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -171,6 +170,7 @@ public class ThanhToan extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setText("Môn chưa thanh toán");
 
+        txtTong.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtTong.setEnabled(false);
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -183,14 +183,6 @@ public class ThanhToan extends javax.swing.JFrame {
         btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThanhToanActionPerformed(evt);
-            }
-        });
-
-        btnKiemtra.setBackground(new java.awt.Color(0, 102, 102));
-        btnKiemtra.setText("Kiểm tra");
-        btnKiemtra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnKiemtraActionPerformed(evt);
             }
         });
 
@@ -209,11 +201,8 @@ public class ThanhToan extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(btnKiemtra, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(69, 69, 69)
+                        .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -225,10 +214,8 @@ public class ThanhToan extends javax.swing.JFrame {
                     .addComponent(txtTong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
-                .addComponent(btnKiemtra)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(btnThanhToan)
-                .addGap(29, 29, 29))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 153, 102));
@@ -241,10 +228,12 @@ public class ThanhToan extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Số tiền còn nợ");
 
-        txtTaikhoan.setForeground(new java.awt.Color(255, 255, 255));
+        txtTaikhoan.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtTaikhoan.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtTaikhoan.setEnabled(false);
 
-        txtNo.setForeground(new java.awt.Color(255, 255, 255));
+        txtNo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtNo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtNo.setEnabled(false);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -293,6 +282,7 @@ public class ThanhToan extends javax.swing.JFrame {
         );
 
         txtTenSv.setBackground(new java.awt.Color(255, 153, 102));
+        txtTenSv.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -323,7 +313,7 @@ public class ThanhToan extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTenSv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTenSv, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -366,10 +356,6 @@ public class ThanhToan extends javax.swing.JFrame {
         ThanhToan();
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
-    private void btnKiemtraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKiemtraActionPerformed
-        Kiemtra();
-    }//GEN-LAST:event_btnKiemtraActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -406,7 +392,6 @@ public class ThanhToan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnKiemtra;
     private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnback;

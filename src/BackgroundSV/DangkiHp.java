@@ -50,38 +50,48 @@ public class DangkiHp extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(this, "Vui lòng chọn môn học muốn đăng kí!", "", JOptionPane.WARNING_MESSAGE);
          }
          else{
-            eDiem tk= new eDiem();
-            if(list.get(i).getSotinchi()=="3")
-            {
-               tk.setMaHP(list.get(i).getMaHP());
-               tk.setMasinhvien(Masv);
-               tk.setDiemTB(0);
-               tk.setDiemtx1(0);
-               tk.setDiemtx2(0);
-               tk.setDiemhs2(-1);
-               tk.setDiemthi(0);
-               tk.setTrangThai("Chưa nộp học phí");
+            int index=0;
+            for(eDangki a : list1){
+                if(a.getTenHP()==list.get(i).getTenHP())
+                    index=+1;
+            }
+            if(index==0){
+                eDiem tk= new eDiem();
+                if(list.get(i).getSotinchi()=="3")
+                {
+                   tk.setMaHP(list.get(i).getMaHP());
+                   tk.setMasinhvien(Masv);
+                   tk.setDiemTB(0);
+                   tk.setDiemtx1(0);
+                   tk.setDiemtx2(0);
+                   tk.setDiemhs2(-1);
+                   tk.setDiemthi(0);
+                   tk.setTrangThai("Chưa nộp học phí");
+                }
+                else{
+                   tk.setMaHP(list.get(i).getMaHP());
+                   tk.setMasinhvien(Masv);
+                   tk.setDiemTB(0);
+                   tk.setDiemtx1(0);
+                   tk.setDiemtx2(0);
+                   tk.setDiemhs2(0);
+                   tk.setDiemthi(0);
+                   tk.setTrangThai("Chưa nộp học phí");
+                }
+                if(csdl.ThemDangki(tk)){
+                    Hienthi();
+                    double a=tc.getTaiChinh(Masv).getSotienno();
+                    tc.No(Masv, (Double.parseDouble(list.get(i).getSotinchi())*300000)+a);
+                    JOptionPane.showMessageDialog(this, "Thêm thành công!", "", JOptionPane.WARNING_MESSAGE);
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "Bạn đã đăng kí học phần này rồi!", "", JOptionPane.WARNING_MESSAGE);
             }
             else{
-               tk.setMaHP(list.get(i).getMaHP());
-               tk.setMasinhvien(Masv);
-               tk.setDiemTB(0);
-               tk.setDiemtx1(0);
-               tk.setDiemtx2(0);
-               tk.setDiemhs2(0);
-               tk.setDiemthi(0);
-               tk.setTrangThai("Chưa nộp học phí");
+                JOptionPane.showMessageDialog(this, "Trùng môn học!\nĐăng kí thất bại...", "", JOptionPane.WARNING_MESSAGE);
             }
-            if(csdl.ThemDangki(tk)){
-                Hienthi();
-                double a=tc.getTaiChinh(Masv).getSotienno();
-                tc.No(Masv, (Double.parseDouble(list.get(i).getSotinchi())*300000)+a);
-                JOptionPane.showMessageDialog(this, "Thêm thành công!", "", JOptionPane.WARNING_MESSAGE);
-            }
-            else
-                JOptionPane.showMessageDialog(this, "Bạn đã đăng kí học phần này rồi!", "", JOptionPane.WARNING_MESSAGE);
 
-            }
+        }
          
      }
      
@@ -121,7 +131,7 @@ public class DangkiHp extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnDangki = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnHuy = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         table2 = new javax.swing.JTable();
 
@@ -206,9 +216,14 @@ public class DangkiHp extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 0, 0));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton3.setText("Hủy học phần");
+        btnHuy.setBackground(new java.awt.Color(255, 0, 0));
+        btnHuy.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnHuy.setText("Hủy học phần");
+        btnHuy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHuyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -218,7 +233,7 @@ public class DangkiHp extends javax.swing.JFrame {
                 .addGap(248, 248, 248)
                 .addComponent(btnDangki, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 596, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(137, 137, 137))
         );
         jPanel3Layout.setVerticalGroup(
@@ -227,7 +242,7 @@ public class DangkiHp extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDangki)
-                    .addComponent(jButton3))
+                    .addComponent(btnHuy))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -324,6 +339,10 @@ public class DangkiHp extends javax.swing.JFrame {
         Dangki();
     }//GEN-LAST:event_btnDangkiActionPerformed
 
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+        Huy();
+    }//GEN-LAST:event_btnHuyActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -362,9 +381,9 @@ public class DangkiHp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangki;
+    private javax.swing.JButton btnHuy;
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnback;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -6,6 +6,7 @@
 package BackgroundQL;
 
 import Customtable.customTaiKhoan;
+import DAO.DaoSinhvien;
 import DAO.DaoTaikhoan;
 import Emtity.eTaiKhoan;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import javax.swing.JOptionPane;
 public class Taikhoan extends javax.swing.JPanel {
     
     DaoTaikhoan csdl = new DaoTaikhoan();
+    DaoSinhvien dsv= new DaoSinhvien();
     ArrayList<eTaiKhoan> list;
     public Taikhoan() {
         initComponents();
@@ -34,20 +36,20 @@ public class Taikhoan extends javax.swing.JPanel {
     public void Them(){
         eTaiKhoan t= new eTaiKhoan();
         if(txtTaikhoan.getText()!="" || txtMatKhau.getText()!=""){
-            t.setTaikhoan(txtTaikhoan.getText());
-            t.setMatkhau(txtMatKhau.getText());
-            if(jComboBox1.getSelectedIndex()==0){
-                t.setLoai("Sinh viên");
-            }
-            else
-               t.setLoai("Giảng viên");
-            if(csdl.ThemTaiKhoan(t)){
-                list.add(t);
-                JOptionPane.showMessageDialog(this, "Thêm thành công","", JOptionPane.INFORMATION_MESSAGE);
-                HienThi();
-            }
-            else
-                JOptionPane.showMessageDialog(this, "Tên tài khoản đã tồn tại!\n Vui lòng nhập tên tài khoản khác!", "", JOptionPane.WARNING_MESSAGE);
+                t.setTaikhoan(txtTaikhoan.getText());
+                t.setMatkhau(txtMatKhau.getText());
+                if(jComboBox1.getSelectedIndex()==0){
+                    t.setLoai("Sinh viên");
+                }
+                else
+                   t.setLoai("Giảng viên");
+                if(csdl.ThemTaiKhoan(t)){
+                    list.add(t);
+                    JOptionPane.showMessageDialog(this, "Thêm thành công","", JOptionPane.INFORMATION_MESSAGE);
+                    HienThi();
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "Tên tài khoản đã tồn tại!\n Vui lòng nhập tên tài khoản khác!", "", JOptionPane.WARNING_MESSAGE);
         }
         else
             JOptionPane.showMessageDialog(this,"Không được bỏ trống!","",JOptionPane.WARNING_MESSAGE);
@@ -377,7 +379,7 @@ public class Taikhoan extends javax.swing.JPanel {
     }//GEN-LAST:event_tableTaiKhoanMouseClicked
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        
+        Tim();
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
 

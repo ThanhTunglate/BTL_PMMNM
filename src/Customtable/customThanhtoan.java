@@ -42,7 +42,7 @@ public class customThanhtoan extends AbstractTableModel{
             case 1: return ps.get(rowIndex).getMaHP();
             case 2: return ps.get(rowIndex).getTenHP(); 
             case 3: return ps.get(rowIndex).getSotinchi();
-            case 4: return ps.get(rowIndex).getSotinchi();  
+            case 4: return Double.parseDouble(ps.get(rowIndex).getSotinchi())*300000;  
             default: return null;
         }
     }
