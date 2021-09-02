@@ -6,6 +6,8 @@
 package BackgroundQL;
 
 import Customtable.customMonHoc;
+import DAO.DaoDangki;
+import DAO.DaoHocphan;
 import DAO.DaoMonhoc;
 import Emtity.eMonHoc;
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ import javax.swing.JOptionPane;
  */
 public class Monhoc extends javax.swing.JPanel {
     DaoMonhoc csdl = new DaoMonhoc();
+    DaoHocphan hp = new DaoHocphan();
+    DaoDangki dk= new DaoDangki();
     ArrayList<eMonHoc> list;
     /**
      * Creates new form Monhoc
@@ -84,6 +88,12 @@ public class Monhoc extends javax.swing.JPanel {
             int response =JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn xóa?","",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
             if(response == JOptionPane.YES_OPTION){
                 csdl.XoaMH(mh.getMamon());
+                for(int i=1; i<10; i++)
+                {
+                    dk.deletemh(mh.getMamon()+"-00"+String.valueOf(i));
+                    hp.XoaHP(mh.getMamon()+"-00"+String.valueOf(i));
+ 
+                }
                 Hienthi();
                 JOptionPane.showMessageDialog(this, "Xóa thành công","",JOptionPane.INFORMATION_MESSAGE);
             }

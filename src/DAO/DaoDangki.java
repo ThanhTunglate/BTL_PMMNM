@@ -150,4 +150,28 @@ public class DaoDangki {
         }
         return false;
     }
+    
+    public boolean deletemh(String Mamh){
+        conn=ConnecttoSql.getconConnection();
+        String sql="DELETE FROM DangKi WHERE MaHP='"+Mamh+"'";
+        try {
+            PreparedStatement ps= conn.prepareStatement(sql);
+            return ps.executeUpdate() >0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    public boolean deletegv(String Magv){
+        conn=ConnecttoSql.getconConnection();
+        String sql="DELETE FROM DangKi WHERE MaGV='"+Magv+"'";
+        try {
+            PreparedStatement ps= conn.prepareStatement(sql);
+            return ps.executeUpdate() >0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

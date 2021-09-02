@@ -112,4 +112,17 @@ public class DaoGiangvien {
         }
         return null;
     }
+    
+    public boolean XoaHP(String HP){
+        conn=ConnecttoSql.getconConnection();
+        String sql="DELETE FROM MonHocDangKi WHERE MaGV=?";
+        try {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ps.setString(1, HP);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

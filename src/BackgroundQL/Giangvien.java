@@ -6,6 +6,7 @@
 package BackgroundQL;
 
 import Customtable.customGiangVien;
+import DAO.DaoDangki;
 import DAO.DaoGiangvien;
 import DAO.DaoTaikhoan;
 import Emtity.eGiangVien;
@@ -22,6 +23,7 @@ public class Giangvien extends javax.swing.JPanel {
     ArrayList<eGiangVien> list;
     DaoGiangvien csdl = new DaoGiangvien();
     DaoTaikhoan tk = new DaoTaikhoan();
+    DaoDangki dk = new DaoDangki();
     /**
      * Creates new form 
      */
@@ -76,6 +78,8 @@ public class Giangvien extends javax.swing.JPanel {
         else{
             int response =JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn xóa?","",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
             if(response == JOptionPane.YES_OPTION){
+                dk.deletegv(list.get(n).getMagiangvien());
+                csdl.XoaHP(list.get(n).getMagiangvien());
                 csdl.XoaGiangVien(list.get(n).getMagiangvien());
                 HienThi();
                 JOptionPane.showMessageDialog(this, "Xóa thành công!","",JOptionPane.INFORMATION_MESSAGE);

@@ -439,6 +439,7 @@ public class SinhVien extends javax.swing.JPanel {
                 String masv = txtMaSV.getText();
                 try {
                     new DaoSinhvien().deleteMaSV(masv);
+                    
                     JOptionPane.showMessageDialog(this, "Xóa thành công ", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 } catch (SQLException ex) {
                     Logger.getLogger(SinhVien.class.getName()).log(Level.SEVERE, null, ex);
