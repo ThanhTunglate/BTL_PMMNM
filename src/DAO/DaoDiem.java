@@ -139,19 +139,15 @@ public class DaoDiem {
         } 
         return null;
     }
-     public ArrayList<eKQHT> getKQHT(String MaSV){
+     public ArrayList<eKQHT> getMaHP(String MaSV){
         try {
             ArrayList<eKQHT> list = new ArrayList<>();
-            String sql ="SELECT * From DangKi WHERE MaSV ='"+MaSV+"'";
+            String sql ="SELECT MaHP From DangKi WHERE MaSV ='"+MaSV+"'";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 eKQHT kq = new eKQHT();
                 kq.setMaMH(rs.getString("MaHP"));
-                kq.setDiemTX1(rs.getFloat("DiemTX1"));
-                kq.setDiemTX2(rs.getFloat("DiemTX2"));
-                kq.setDiemHS2(rs.getFloat("DiemHS2"));
-                kq.setDiemThi(rs.getFloat("DiemThi"));
                 list.add(kq);
             }
             return list;
@@ -160,8 +156,8 @@ public class DaoDiem {
         }
        return null;
     }
-     public ArrayList<eKQHT> allKQHT(String MaSV){
-         ArrayList<eKQHT> list = getKQHT(MaSV);
+     public ArrayList<eKQHT> tenMH(String MaSV){
+         ArrayList<eKQHT> list = getMaHP(MaSV);
          for(eKQHT item : list){
              try {
                  String sql = "SELECT TenMH FROM MonHoc Where MaMH = '"+item.getMaMH().substring(0, 5)+"'";
@@ -172,6 +168,24 @@ public class DaoDiem {
                  }
              } catch (SQLException ex) {
                  Logger.getLogger(DaoDiem.class.getName()).log(Level.SEVERE, null, ex);
+             }
+         }
+         return list;
+     }
+     public ArrayList<eKQHT> getAllKQHT(String MaSV){
+         ArrayList<eKQHT> list = tenMH(MaSV);
+         for(eKQHT item : list){
+             try {
+                 String sql = "SELECT * FROM DangKi WHERE MaSV = '"+MaSV+"' AND MaHP = '"+item.getMaMH()+"' ";
+                 PreparedStatement ps = conn.prepareStatement(sql);
+                 ResultSet rs = ps.executeQuery();
+                 while(rs.next()){
+                     item.setDiemTX1(rs.getFloat("DiemTX1"));
+                     item.setDiemTX2(rs.getFloat("DiemTX2"));
+                     item.setDiemHS2(rs.getFloat("DiemHS2"));
+                     item.setDiemThi(rs.getFloat("DiemThi"));
+                 }
+             } catch (Exception e) {
              }
          }
          return list;

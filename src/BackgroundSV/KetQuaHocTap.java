@@ -34,7 +34,7 @@ public class KetQuaHocTap extends javax.swing.JFrame {
         HienThi();
     }
     public void HienThi(){
-        list = dao.allKQHT(MaSV);
+        list = dao.getAllKQHT(MaSV);
         tableKQHT.setModel(new customKetQuaHocTap(list));
     }
     /**

@@ -34,7 +34,7 @@ public class Ketquathi extends javax.swing.JFrame {
         HienThi();
     }
     public void HienThi(){
-        list = dao.allKQHT(MaSV);
+        list = dao.getAllKQHT(MaSV);
         tableKQThi.setModel(new customKetQuaThi(list));
     }
     /**
