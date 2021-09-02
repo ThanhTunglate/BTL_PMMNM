@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class customGiangVien extends AbstractTableModel{
     private String name[]={"STT","Mã giảng viên","Tên giảng viên", "Giới tính", "Ngày sinh", "Địa chỉ", "SĐT"};
-    private Class classes[]={int.class,String.class,String.class,String.class,String.class,String.class};
+    private Class classes[]={int.class,String.class,String.class,String.class,String.class,String.class,String.class};
     ArrayList<eGiangVien> ps= new ArrayList<eGiangVien>();
     public customGiangVien(ArrayList<eGiangVien> p) {
         this.ps=p;
@@ -42,8 +42,9 @@ public class customGiangVien extends AbstractTableModel{
             case 1: return ps.get(rowIndex).getMagiangvien();
             case 2: return ps.get(rowIndex).getTengiangvien(); 
             case 3: return ps.get(rowIndex).getGioitinh();
-            case 4: return ps.get(rowIndex).getDiachi(); 
-            case 5: return ps.get(rowIndex).getSDT();
+            case 4: return ps.get(rowIndex).getNgaysinh();
+            case 5: return ps.get(rowIndex).getDiachi(); 
+            case 6: return ps.get(rowIndex).getSDT();
             default: return null;
         }
     }

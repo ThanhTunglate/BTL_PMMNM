@@ -147,4 +147,16 @@ public class DaoSinhvien {
           this.getAll();
           return null;
     }
+      
+      public boolean deletemh(String Mamh){
+        conn=ConnecttoSql.getconConnection();
+        String sql="DELETE FROM DangKi WHERE MaSV='"+Mamh+"'";
+        try {
+            PreparedStatement ps= conn.prepareStatement(sql);
+            return ps.executeUpdate() >0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

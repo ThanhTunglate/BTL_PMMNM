@@ -9,6 +9,7 @@ import Customtable.customSinhVien;
 import static Customtable.model.listSV;
 import DAO.ConnecttoSql;
 import DAO.DaoSinhvien;
+import DAO.DaoTaichinh;
 import DAO.DaoTaikhoan;
 import Emtity.eSinhVien;
 import Emtity.eTaiKhoan;
@@ -438,8 +439,9 @@ public class SinhVien extends javax.swing.JPanel {
             if (b == JOptionPane.YES_OPTION) {
                 String masv = txtMaSV.getText();
                 try {
+                    new DaoSinhvien().deletemh(masv);
+                    new DaoTaichinh().Xoatc(masv);
                     new DaoSinhvien().deleteMaSV(masv);
-                    
                     JOptionPane.showMessageDialog(this, "Xóa thành công ", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 } catch (SQLException ex) {
                     Logger.getLogger(SinhVien.class.getName()).log(Level.SEVERE, null, ex);

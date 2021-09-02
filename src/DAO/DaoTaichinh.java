@@ -137,4 +137,17 @@ public class DaoTaichinh {
         }
         return false;
     }
+    
+    public boolean Xoatc(String HP){
+        conn=ConnecttoSql.getconConnection();
+        String sql="DELETE FROM TaiChinh WHERE MaSV=?";
+        try {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ps.setString(1, HP);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

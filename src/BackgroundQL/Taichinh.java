@@ -147,9 +147,10 @@ public class Taichinh extends javax.swing.JPanel {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Student-3-icon.png"))); // NOI18N
 
-        txtMasv.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        txtMasv.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtMasv.setEnabled(false);
 
+        txtHoTen.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtHoTen.setEnabled(false);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -160,10 +161,13 @@ public class Taichinh extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Họ và tên");
 
+        txtGioiTinh.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtGioiTinh.setEnabled(false);
 
+        txtNgaySinh.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtNgaySinh.setEnabled(false);
 
+        txtDiachi.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtDiachi.setEnabled(false);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -178,8 +182,10 @@ public class Taichinh extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Địa chỉ");
 
+        txtSDT.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtSDT.setEnabled(false);
 
+        txtLop.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtLop.setEnabled(false);
 
         SĐT.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -280,6 +286,7 @@ public class Taichinh extends javax.swing.JPanel {
         txtTaikhoan.setEnabled(false);
 
         txtNo.setForeground(new java.awt.Color(255, 0, 0));
+        txtNo.setDisabledTextColor(new java.awt.Color(255, 0, 0));
         txtNo.setEnabled(false);
 
         jLabel12.setForeground(new java.awt.Color(0, 102, 102));
@@ -396,8 +403,7 @@ public class Taichinh extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 30, Short.MAX_VALUE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jLabel16)
@@ -415,9 +421,9 @@ public class Taichinh extends javax.swing.JPanel {
                             .addComponent(jLabel11)
                             .addComponent(txtNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(57, 57, 57)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 38, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
