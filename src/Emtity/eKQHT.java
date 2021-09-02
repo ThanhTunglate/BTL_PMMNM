@@ -33,7 +33,7 @@ public class eKQHT {
     }
 
     public float tinhDiemTK() {
-        return DiemTK = (DiemTB + DiemThi * 2) / 3;
+        return DiemTK = (tinhDiemTB() + DiemThi * 2) / 3;
     }
 
     public String XepLoai(float diemtk) {
@@ -93,11 +93,11 @@ public class eKQHT {
     }
 
     public float getDiemThi() {
-        return DiemTB;
+        return DiemThi;
     }
 
-    public void setDiemThi(float DiemTB) {
-        this.DiemTB = DiemTB;
+    public void setDiemThi(float DiemThi) {
+        this.DiemThi = DiemThi;
     }
 
     public float getDiemTB() {

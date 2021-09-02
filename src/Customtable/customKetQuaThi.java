@@ -42,14 +42,11 @@ public class customKetQuaThi extends AbstractTableModel {
             case 2:
                 return ps.get(rowIndex).getTenMH();
             case 3:
-                System.out.println(ps.get(rowIndex).tinhDiemTB());
-                return ps.get(rowIndex).getDiemTB();
+                return ps.get(rowIndex).tinhDiemTB();
             case 4:
-                System.out.println(ps.get(rowIndex).getDiemThi());
                 return ps.get(rowIndex).getDiemThi();
             case 5:
-                System.out.println(ps.get(rowIndex).tinhDiemTK());
-                return ps.get(rowIndex).getDiemTK();
+                return ps.get(rowIndex).tinhDiemTK();
             case 6:
                  return ps.get(rowIndex).XepLoai(ps.get(rowIndex).getDiemTK());
             default:
