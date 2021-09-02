@@ -60,7 +60,7 @@ public class ThanhToan extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Tài khoản không đủ tiền!", "", JOptionPane.ERROR_MESSAGE); 
         }
         else{
-            if(csdl.Thanhtoan(csdl.getTaiChinh(Masv).getSotiendu()-Double.parseDouble(txtTong.getText()), Masv,csdl.getTaiChinh(Masv).getSotienno()-Double.parseDouble(txtTong.getText()))){
+            if(csdl.Thanhtoan(csdl.getTaiChinh(Masv).getSotiendu()-Integer.parseInt(txtTong.getText()), Masv,csdl.getTaiChinh(Masv).getSotienno()-Integer.parseInt(txtTong.getText()))){
                 Setting();
                     csdl.Update(Masv, list.get(i).getMaHP());
                     HienThi();
