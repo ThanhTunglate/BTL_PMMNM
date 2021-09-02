@@ -60,7 +60,7 @@ public class Taichinh extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Vui lòng nhập số tiền muốn nạp!","",JOptionPane.WARNING_MESSAGE);
         }
         else{
-            if(Pattern.matches("[0-9]",txtNaptien.getText())){
+            if(Pattern.matches("[0-9]{0,}",txtNaptien.getText())){
                 double a= csdl.getTaiChinh(txtMasv.getText()).getSotiendu();
                 if(Double.parseDouble(txtNaptien.getText())>100000){
                     if(csdl.NapTien(txtMasv.getText(), a+Double.parseDouble(txtNaptien.getText()))){
