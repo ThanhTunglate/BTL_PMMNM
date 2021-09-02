@@ -56,7 +56,7 @@ public class ThanhToan extends javax.swing.JFrame {
     
     public void ThanhToan(){
         Kiemtra();
-        if(csdl.getTaiChinh(Masv).getSotienno()>csdl.getTaiChinh(Masv).getSotiendu()){
+        if(Double.parseDouble(txtTong.getText())>csdl.getTaiChinh(Masv).getSotiendu()){
             JOptionPane.showMessageDialog(this, "Tài khoản không đủ tiền!", "", JOptionPane.ERROR_MESSAGE); 
         }
         else{
