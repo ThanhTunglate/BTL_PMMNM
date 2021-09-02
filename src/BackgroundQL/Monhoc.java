@@ -91,7 +91,14 @@ public class Monhoc extends javax.swing.JPanel {
     }
     
     public void TimKiem(){
-        
+        if(txtTimkiem.getText()!=""){
+            eMonHoc mh = csdl.TimKiem(txtTimkiem.getText());
+            ArrayList<eMonHoc> a = new ArrayList<>();
+            a.add(mh);
+            tableMH.setModel(new customMonHoc(a));
+        }
+        else
+            JOptionPane.showMessageDialog(this, "Không được bỏ trống!", "", JOptionPane.WARNING_MESSAGE);   
     }
     
     public void XoaTrang(){
@@ -113,7 +120,7 @@ public class Monhoc extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnThem = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtTimkiem = new javax.swing.JTextField();
         btnTimKiem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
@@ -167,6 +174,11 @@ public class Monhoc extends javax.swing.JPanel {
         btnTimKiem.setBackground(new java.awt.Color(0, 102, 102));
         btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search-icon.png"))); // NOI18N
         btnTimKiem.setText("Tìm kiếm");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         btnSua.setBackground(new java.awt.Color(0, 102, 102));
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Actions-configure-toolbars-icon.png"))); // NOI18N
@@ -189,6 +201,11 @@ public class Monhoc extends javax.swing.JPanel {
         btnReset.setBackground(new java.awt.Color(0, 102, 102));
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Reset-icon.png"))); // NOI18N
         btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -290,7 +307,7 @@ public class Monhoc extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(382, 382, 382)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -303,7 +320,7 @@ public class Monhoc extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnTimKiem)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -338,6 +355,15 @@ public class Monhoc extends javax.swing.JPanel {
         XoaTrang();
     }//GEN-LAST:event_btnXoaActionPerformed
 
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        TimKiem();
+    }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        XoaTrang();
+        Hienthi();
+    }//GEN-LAST:event_btnResetActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReset;
@@ -354,10 +380,10 @@ public class Monhoc extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tableMH;
     private javax.swing.JTextField txtMaMon;
     private javax.swing.JTextField txtSotin;
     private javax.swing.JTextField txtTenmon;
+    private javax.swing.JTextField txtTimkiem;
     // End of variables declaration//GEN-END:variables
 }
