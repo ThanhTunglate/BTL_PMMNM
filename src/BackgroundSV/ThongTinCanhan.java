@@ -6,6 +6,7 @@
 package BackgroundSV;
 import Customtable.model;
 import DAO.DaoSinhvien;
+import Emtity.eSinhVien;
 import javax.swing.JOptionPane;
 
 /**
@@ -61,6 +62,7 @@ public class ThongTinCanhan extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txtSDT = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        btnCapNhat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,21 +145,13 @@ public class ThongTinCanhan extends javax.swing.JFrame {
 
         txtMaSV.setEnabled(false);
 
-        txtName.setEnabled(false);
-
         txtGT.setEnabled(false);
-
-        txtNgaySinh.setEnabled(false);
-
-        txtDiaChi.setEnabled(false);
 
         txtLop.setEnabled(false);
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("SĐT");
-
-        txtSDT.setEnabled(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -230,6 +224,19 @@ public class ThongTinCanhan extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(0, 102, 102));
         jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        btnCapNhat.setBackground(new java.awt.Color(0, 102, 102));
+        btnCapNhat.setText("Cập nhật thông tin");
+        btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -242,6 +249,8 @@ public class ThongTinCanhan extends javax.swing.JFrame {
                 .addContainerGap(42, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67))
         );
@@ -252,7 +261,9 @@ public class ThongTinCanhan extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(btnCapNhat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -284,6 +295,27 @@ public class ThongTinCanhan extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_btnThoatActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        BgrSV kh=new BgrSV();
+        kh.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
+        // TODO add your handling code here:
+            String maSV = txtMaSV.getText();
+            String tenSV = txtName.getText();
+            String maLH = txtLop.getText();
+            String gioiTinh = txtGT.getText();
+            String ngaySinh = txtNgaySinh.getText();
+            String diaChi = txtDiaChi.getText();
+            String soDT = txtSDT.getText();
+            eSinhVien sv = new eSinhVien(maSV, tenSV, maLH, gioiTinh, ngaySinh, diaChi, soDT);
+            new DaoSinhvien().updateByMaSV(sv);
+            JOptionPane.showMessageDialog(null, "Sửa thành công");
+    }//GEN-LAST:event_btnCapNhatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,6 +354,7 @@ public class ThongTinCanhan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnback;
     private javax.swing.JButton jButton1;
