@@ -101,4 +101,19 @@ public class DaoTaikhoan {
         }
         return null;
     }
+    
+    public boolean Doimk(String TenTk, String mkmoi){
+        conn=ConnecttoSql.getconConnection();
+        String sql="UPDATE TaiKhoan SET MatKhau=? WHERE Taikhoan=?";
+        try {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ps.setString(1, mkmoi);
+            ps.setString(2, TenTk);
+            return ps.executeUpdate() >0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
 }

@@ -7,7 +7,9 @@ package BackgroundQL;
 
 import Customtable.customGiangVien;
 import DAO.DaoGiangvien;
+import DAO.DaoTaikhoan;
 import Emtity.eGiangVien;
+import Emtity.eTaiKhoan;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -19,6 +21,7 @@ import javax.swing.JOptionPane;
 public class Giangvien extends javax.swing.JPanel {
     ArrayList<eGiangVien> list;
     DaoGiangvien csdl = new DaoGiangvien();
+    DaoTaikhoan tk = new DaoTaikhoan();
     /**
      * Creates new form 
      */
@@ -51,6 +54,11 @@ public class Giangvien extends javax.swing.JPanel {
             gv.setDiachi(txtDiachi.getText());
             gv.setSDT(txtSDT.getText());
             if(csdl.ThemGiangvien(gv)){
+                eTaiKhoan t= new eTaiKhoan();
+                t.setTaikhoan(txtMaGv.getText());
+                t.setMatkhau(txtMaGv.getText()+"abc");
+                t.setLoai("Giảng viên");
+                tk.ThemTaiKhoan(t);
                 list.add(gv);
                 HienThi();
                 JOptionPane.showMessageDialog(this,"Thêm thành công!","",JOptionPane.INFORMATION_MESSAGE);
