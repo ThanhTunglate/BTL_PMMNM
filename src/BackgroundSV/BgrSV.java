@@ -190,6 +190,11 @@ public class BgrSV extends javax.swing.JFrame {
         jLabel4.setText("Thông tin cá nhân");
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Help-icon.png"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Hỏi đáp");
@@ -389,6 +394,11 @@ public class BgrSV extends javax.swing.JFrame {
         dk.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+
+        JOptionPane.showMessageDialog(this, "Mọi thắc mắc của sinh viên vui lòng liên hệ phòng công tác học sinh sinh viên tại nha A3-CS1", "Chú ý", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
