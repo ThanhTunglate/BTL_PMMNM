@@ -35,7 +35,7 @@ public class Taikhoan extends javax.swing.JPanel {
     
     public void Them(){
         eTaiKhoan t= new eTaiKhoan();
-        if(txtTaikhoan.getText()!="" || txtMatKhau.getText()!=""){
+        if(txtTaikhoan.getText()!="" && txtMatKhau.getText()!=""){
                 t.setTaikhoan(txtTaikhoan.getText());
                 t.setMatkhau(txtMatKhau.getText());
                 if(jComboBox1.getSelectedIndex()==0){
