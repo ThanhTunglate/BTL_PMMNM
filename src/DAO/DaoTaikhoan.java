@@ -116,4 +116,23 @@ public class DaoTaikhoan {
         return false;
     }
     
+    public ArrayList<eTaiKhoan> TimTK(String loai){
+        conn=ConnecttoSql.getconConnection();
+        ArrayList<eTaiKhoan> list = new ArrayList<>();
+        String sql="SELECT * FROM TaiKhoan WHERE Loai='"+loai+"'";
+        try {
+            PreparedStatement ps= conn.prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                eTaiKhoan tk = new eTaiKhoan();
+                tk.setTaikhoan(rs.getString("Taikhoan"));
+                tk.setMatkhau(rs.getString("MatKhau"));
+                tk.setLoai(rs.getString("Loai"));
+                list.add(tk);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

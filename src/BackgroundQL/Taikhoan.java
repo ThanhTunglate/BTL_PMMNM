@@ -10,6 +10,7 @@ import DAO.DaoSinhvien;
 import DAO.DaoTaikhoan;
 import Emtity.eTaiKhoan;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 
@@ -36,6 +37,7 @@ public class Taikhoan extends javax.swing.JPanel {
     public void Them(){
         eTaiKhoan t= new eTaiKhoan();
         if(txtTaikhoan.getText()!="" && txtMatKhau.getText()!=""){
+            if(Pattern.matches("[0-9A-Za-z]{5,}",txtMatKhau.getText())){
                 t.setTaikhoan(txtTaikhoan.getText());
                 t.setMatkhau(txtMatKhau.getText());
                 if(jComboBox1.getSelectedIndex()==0){
@@ -50,6 +52,9 @@ public class Taikhoan extends javax.swing.JPanel {
                 }
                 else
                     JOptionPane.showMessageDialog(this, "Tên tài khoản đã tồn tại!\n Vui lòng nhập tên tài khoản khác!", "", JOptionPane.WARNING_MESSAGE);
+            }
+            else
+                JOptionPane.showMessageDialog(this,"Mật khẩu phải có ít nhất 5 kí tự!","",JOptionPane.WARNING_MESSAGE);
         }
         else
             JOptionPane.showMessageDialog(this,"Không được bỏ trống!","",JOptionPane.WARNING_MESSAGE);
@@ -74,20 +79,24 @@ public class Taikhoan extends javax.swing.JPanel {
         int n= tableTaiKhoan.getSelectedRow();
         eTaiKhoan x= list.get(n);
         eTaiKhoan t= new eTaiKhoan();
-        if(txtTaikhoan.getText()!="" || txtMatKhau.getText()!=""){
-            t.setTaikhoan(txtTaikhoan.getText());
-            t.setMatkhau(txtMatKhau.getText());
-            if(jComboBox1.getSelectedIndex()==0){
-                t.setLoai("Sinh viên");
+        if(txtTaikhoan.getText()!="" && txtMatKhau.getText()!=""){
+            if(Pattern.matches("[0-9A-Za-z]{5,}",txtMatKhau.getText())){
+                t.setTaikhoan(txtTaikhoan.getText());
+                t.setMatkhau(txtMatKhau.getText());
+                if(jComboBox1.getSelectedIndex()==0){
+                    t.setLoai("Sinh viên");
+                }
+                else
+                   t.setLoai("Giảng viên");
+                if(csdl.SuaTaiKhoan(x, t)){
+                    JOptionPane.showMessageDialog(this, "Sửa tài khoản thành công!", "", JOptionPane.INFORMATION_MESSAGE);
+                    HienThi();
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "Tên tài khoản đã tồn tại!\n Vui lòng nhập tên tài khoản khác!", "", JOptionPane.WARNING_MESSAGE);
             }
             else
-               t.setLoai("Giảng viên");
-            if(csdl.SuaTaiKhoan(x, t)){
-                JOptionPane.showMessageDialog(this, "Sửa tài khoản thành công!", "", JOptionPane.INFORMATION_MESSAGE);
-                HienThi();
-            }
-            else
-                JOptionPane.showMessageDialog(this, "Tên tài khoản đã tồn tại!\n Vui lòng nhập tên tài khoản khác!", "", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Mật khẩu phải có ít nhất 5 kí tự!!", "", JOptionPane.WARNING_MESSAGE);
         }
         else
             JOptionPane.showMessageDialog(this,"Không được bỏ trống!","",JOptionPane.WARNING_MESSAGE);
@@ -101,15 +110,19 @@ public class Taikhoan extends javax.swing.JPanel {
         else{
             eTaiKhoan t = csdl.TimKiem(txtTimkiem.getText());
             ArrayList<eTaiKhoan> a = new ArrayList<>();
-            a.add(t);
-            tableTaiKhoan.setModel(new customTaiKhoan(a));
+            if(a.size()==0){
+                JOptionPane.showMessageDialog(this,"Không tìm thấy tài khoản "+txtTimkiem.getText(),"",JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                a.add(t);
+                tableTaiKhoan.setModel(new customTaiKhoan(a));
+            }
         }
     }
     
     public void Xoatrang(){
         txtMatKhau.setText("");
         txtTaikhoan.setText("");
-        txtTennguoidung.setText("");
         txtTimkiem.setText("");
         jComboBox1.setSelectedIndex(0);
     }
@@ -134,13 +147,12 @@ public class Taikhoan extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txtTaikhoan = new javax.swing.JTextField();
         txtMatKhau = new javax.swing.JTextField();
-        txtTennguoidung = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         btnThem = new javax.swing.JButton();
+        Luachon = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -230,17 +242,11 @@ public class Taikhoan extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Mật khẩu");
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Tên người dùng");
-
-        txtTennguoidung.setEnabled(false);
-
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Loại tài khoản");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sinh viên", "Giảng viên" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sinh viên", "Giảng viên" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -249,14 +255,12 @@ public class Taikhoan extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtTaikhoan)
-                    .addComponent(txtTennguoidung)
                     .addComponent(txtMatKhau)
                     .addComponent(jComboBox1, 0, 295, Short.MAX_VALUE))
                 .addGap(21, 21, 21))
@@ -268,15 +272,11 @@ public class Taikhoan extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtTaikhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGap(60, 60, 60)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtTennguoidung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(54, 54, 54)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -292,6 +292,13 @@ public class Taikhoan extends javax.swing.JPanel {
             }
         });
 
+        Luachon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sinh viên", "Giảng viên" }));
+        Luachon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LuachonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -299,7 +306,11 @@ public class Taikhoan extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Luachon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
@@ -326,9 +337,11 @@ public class Taikhoan extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Luachon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -382,8 +395,14 @@ public class Taikhoan extends javax.swing.JPanel {
         Tim();
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
+    private void LuachonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LuachonActionPerformed
+        ArrayList<eTaiKhoan> t=csdl.TimTK(String.valueOf(Luachon.getSelectedItem()));
+        tableTaiKhoan.setModel(new customTaiKhoan(t));  
+    }//GEN-LAST:event_LuachonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Luachon;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
@@ -393,7 +412,6 @@ public class Taikhoan extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -401,7 +419,6 @@ public class Taikhoan extends javax.swing.JPanel {
     private javax.swing.JTable tableTaiKhoan;
     private javax.swing.JTextField txtMatKhau;
     private javax.swing.JTextField txtTaikhoan;
-    private javax.swing.JTextField txtTennguoidung;
     private javax.swing.JTextField txtTimkiem;
     // End of variables declaration//GEN-END:variables
 }
