@@ -69,7 +69,7 @@ public class Taichinh extends javax.swing.JPanel {
                     }
                 }
                 else
-                    JOptionPane.showMessageDialog(this,"Số tiền nạp phải lớn hơn 100.000VND!","",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this,"Số tiền nạp phải lớn hơn 100.000VND! và phải là chữ số","",JOptionPane.WARNING_MESSAGE);
             }
             else
                 JOptionPane.showMessageDialog(this,"Bạn phải nhập số tiền bằng chữ số!","",JOptionPane.WARNING_MESSAGE);
