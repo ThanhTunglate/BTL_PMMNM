@@ -289,6 +289,11 @@ public class Monhoc extends javax.swing.JPanel {
                 "Mã môn", "Tên môn", "Số tín", "Hình thức thi"
             }
         ));
+        tableMH.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMHMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tableMH);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -373,6 +378,15 @@ public class Monhoc extends javax.swing.JPanel {
         XoaTrang();
         Hienthi();
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void tableMHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMHMouseClicked
+        int n= tableMH.getSelectedRow();
+        eMonHoc m = list.get(n);
+        txtMaMon.setText(m.getMamon());
+        txtTenmon.setText(m.getTenmon());
+        txtSotin.setText(m.getSotinchi());
+        jComboBox1.setSelectedItem(m.getHinhthucthi());
+    }//GEN-LAST:event_tableMHMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
